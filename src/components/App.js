@@ -11,9 +11,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Dashboard />
+        {this.props.loggedIn === true
+          ? null
+          : <Dashboard />
+        }
       </div>
     );
+  }
+}
+
+function mapStateToProps ({ authedUser }) {
+  return {
+    loggedIn: authedUser === null
   }
 }
 
