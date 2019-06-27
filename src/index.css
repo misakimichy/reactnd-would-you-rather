@@ -23,7 +23,6 @@ a, ul, li {
 
 .nav ul{
   display: flex;
-  padding-left: 0;
   list-style: none;
 }
 
@@ -33,6 +32,6 @@ a, ul, li {
 }
 
 
-.nav li:last-child {
+/* .nav li:last-child {
   margin-left: auto;
-}
+} */
