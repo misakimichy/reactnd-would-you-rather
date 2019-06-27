@@ -1,3 +1,9 @@
+:root {
+  --white: #fdfffc;
+  --black: #011627;
+  --green: #2ec4b6;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -7,13 +13,39 @@ a, ul, li {
   text-decoration: none;
 }
 
-.container {
+.login-container {
+  width: 60%;
+  margin: 200px auto;
+  border: 1px solid var(--black);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container img {
   margin: 0 auto;
 }
 
-.button {
-  text-transform: uppercase;
+select {
+  width: 40%;
+  height: 30px;
   font-size: 16px;
+  margin: 10px auto;
+}
+
+.avatar {
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+  margin: 10px;
+}
+
+.button {
+  font-size: 16px;
+  width: 40%;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 5px;
   cursor: pointer;
 }
 
