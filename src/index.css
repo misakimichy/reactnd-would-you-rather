@@ -8,6 +8,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--white);
 }
 
 a, ul, li {
@@ -43,11 +44,21 @@ select {
 
 .button {
   font-size: 16px;
-  width: 40%;
-  height: 30px;
-  margin: 0 auto;
+  width: 200px;
+  height: 30%;
+  margin: 10px auto;
   border-radius: 5px;
   cursor: pointer;
+  background-color: var(--green);
+  color: var(--black);
+}
+
+.button:hover {
+  background-color: #32e2d2;
+}
+
+.button:click {
+
 }
 
 .center {
@@ -64,7 +75,30 @@ select {
   padding: 10px;
 }
 
+/* New Question */
+.question {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-flow: wrap;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+}
 
-/* .nav li:last-child {
-  margin-left: auto;
-} */
+.question form {
+  width: 100%;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  resize: none;
+  margin-bottom: 10px;
+}
