@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { handleAddQuestion } from '../actions/questions';
 
 class NewQuestion extends Component {
     state = {
         optionOne: '',
         optionTwo: '',
+        toHome: false,
     }
 
     handleSelectOption = (event, optionIndex) => {
@@ -16,9 +19,28 @@ class NewQuestion extends Component {
                 : {...previousState, 'optionTwo': text}
         });
     }
+
+    handleSubmit = event => {
+        event.preventDefault();
+
+        const { optionOne, optionTwo } = this.state;
+        const { dispatch, id } = this.props;
+
+        dispatch(handleAddQuestion(optionOne, optionTwo));
+        this.setState(previousState => ({
+            ...previousState,
+            toHome: id ? false : true,
+        }))
+    }
+
+
     render() {
         const { authedUser, users } = this.props;
-        const { optionOne, optionTwo } = this.state;
+        const { optionOne, optionTwo, toHome } = this.state;
+
+        if(toHome) {
+            return <Redirect to='/' />
+        }
 
         return (
             <div>
@@ -30,7 +52,7 @@ class NewQuestion extends Component {
                         alt={`Avatar of ${authedUser}`}
                     /> */}
                     <h2>Would You Rather...</h2>
-                    <form >
+                    <form onSubmit={this.handleSubmit}>
                         <div className='option'>
                             <input
                                 className="option"
