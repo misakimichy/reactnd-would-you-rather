@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
+import Question from './Question';
 
 class Dashboard extends Component {
+    state = {
+        answered: false,
+    }
+
+    handleTabChange = event => {
+        this.setState({answered: true});
+    }
+
     render() {
-        console.log(this.props);
+        const { answered } = this.state;
         return(
             <div>
                 <h3 className='center'>Question List</h3>
-                <ul className='question-list'>
-                    {this.props.questionIds.map(id => (
-                        <li key={id}>
-                            <div>Question ID: {id}</div>
+                <button
+                    className={!answered ? 'button-left' : ''}
+                    onClick={event => this.handleTabChange(event)}
+                >
+                Unanswered
+                </button>
+                <button
+                    className={answered ? 'button-right' : 'btn-right'}
+                    onClick={event => this.handleTabChange(event)}
+                >
+                Answered
+                </button>
+                <ul className='question-feed'>
+                    {this.props.questionIds.map(question => (
+                        <li key={question}>
+                            <Question question={question}/>
                         </li>
                     ))}
                 </ul>

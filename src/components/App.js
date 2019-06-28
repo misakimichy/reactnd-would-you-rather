@@ -21,11 +21,11 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            <Nav />
             {this.props.loggedOut === true
               ? ''
               : <div>
                   {/* <Route component={Login} /> */}
+                  <Nav />
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/login' component={Login} />
                   <Route path='/questions/:id' component={QuestionDetail} />
