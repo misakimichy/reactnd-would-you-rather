@@ -30,13 +30,31 @@ class NewQuestion extends Component {
                         alt={`Avatar of ${authedUser}`}
                     /> */}
                     <h2>Would You Rather...</h2>
-                    <form>
+                    <form >
                         <div className='option'>
-                            <textarea
+                            <input
+                                className="option"
                                 value={optionOne}
+                                placeholder= "First option comes here."
                                 onChange={(event) => this.handleSelectOption(event, 1)}
                             />
                         </div>
+                        <span>or</span>
+                        <div className='options'>
+                            <input
+                                className="option"
+                                value={optionTwo}
+                                placeholder= "Second option comes here."
+                                onChange={(event) => this.handleSelectOption(event, 2)}
+                            />
+                        </div>
+                        <button
+                            className='button'
+                            type='submit'
+                            disabled={optionOne === ''|| optionTwo === ''}
+                        >
+                            Submit
+                        </button>
                     </form>
                 </div>
             </div>
