@@ -29,7 +29,14 @@ class Dashboard extends Component {
                     Unanswered
                     </div>
                     <ul>
-                        unanswered.map
+                        {unanswered.map(question => (
+                            <li key={question.id}>
+                                <Question
+                                    authedUserId={currentUser.id}
+                                    question={question}
+                                />
+                            </li>
+                        ))}
                     </ul>
                     <div
                         className='center'
@@ -37,15 +44,17 @@ class Dashboard extends Component {
                     >
                     Answered
                     </div>
-
+                    <ul>
+                        {answered.map(question => (
+                            <li key={question.id}>
+                                <Question
+                                    authedUserId={currentUser.id}
+                                    question={question}
+                                />
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <ul className='question-feed'>
-                    {this.props.questionIds.map(id => (
-                        <li key={id}>
-                            <Question id={id}/>
-                        </li>
-                    ))}
-                </ul>
             </div>
         )
     }
