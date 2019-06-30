@@ -22,7 +22,7 @@ class App extends Component {
           <LoadingBar />
           <div className='container'>
             {this.props.loggedOut === true
-              ? ''
+              ? null
               : <div>
                   {/* <Route component={Login} /> */}
                   <Nav />
