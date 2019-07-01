@@ -12,11 +12,16 @@ function addQuestion(question) {
    }
 }
 
-export function handleAddQuestion (question) {
-    return (dispatch) => {
+export function handleAddQuestion (optionOne, optionTwo) {
+    return (dispatch, getState) => {
+        const { authedUser } = getState();
         dispatch(showLoading());
-        return saveQuestion(question)
-            .then(question => dispatch(addQuestion(question)))
+
+        return saveQuestion({
+            optionOne,
+            optionTwo,
+            authedUser: authedUser
+        }).then(question => dispatch(addQuestion(question)))
             .then(() => dispatch(hideLoading()))
     };
 }
@@ -35,11 +40,12 @@ function answerQuestion(questionAnswer) {
     }
 }
 
-export function handleAnswerQuestion (questionAnswer) {
-    return (dispatch) => {
+export function handleAnswerQuestion (qid, answer) {
+    return (dispatch, getState) => {
+        const { authedUser, questionAnswer } = getState();
         dispatch(showLoading());
 
-        return saveQuestionAnswer (questionAnswer)
+        return saveQuestionAnswer (authedUser, qid, answer)
         .then(() => dispatch(answerQuestion(questionAnswer)))
         .then(() => dispatch(hideLoading()))
     };
