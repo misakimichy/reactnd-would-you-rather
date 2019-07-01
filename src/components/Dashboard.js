@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionDetail from './QuestionDetail';
+import Nav from './Nav';
 
 class Dashboard extends Component {
     state = {
@@ -19,6 +20,7 @@ class Dashboard extends Component {
 
         return(
             <div>
+                <Nav />
                 <h3 className='center'>Question List</h3>
                 <div>
                     <div
