@@ -6,12 +6,12 @@ import { addQuestion } from '../actions/questions';
 
 class Dashboard extends Component {
     state = {
-        answered: true,
+        unanswered: true,
     }
 
     handleTabChange = event => {
         this.setState({
-            answered: !this.state.answered
+            unanswered: !this.state.unanswered
          })
     }
 
@@ -28,16 +28,6 @@ class Dashboard extends Component {
                     >
                     Unanswered
                     </div>
-                    <ul>
-                        {unanswered.map(question => (
-                            <li key={question.id}>
-                                <Question
-                                    authedUserId={currentUser.id}
-                                    question={question}
-                                />
-                            </li>
-                        ))}
-                    </ul>
                     <div
                         className='center'
                         onChange={this.handleTabChange}
@@ -45,14 +35,23 @@ class Dashboard extends Component {
                     Answered
                     </div>
                     <ul>
-                        {answered.map(question => (
-                            <li key={question.id}>
-                                <Question
-                                    authedUserId={currentUser.id}
-                                    question={question}
-                                />
-                            </li>
-                        ))}
+                        {(this.state.unanswered ? unanswered : answered).map(question => {
+                            return (
+                                <li key={question.id}>
+                                    <Link to={`/questions/${question.id}`}>
+                                        Would You Rather...
+                                    </Link>
+                                    {!this.state.unanswered &&
+                                        (<p>You answered :
+                                            {question.optionOne.votes.includes(currentUser.id)
+                                                ? question.optionOne.text
+                                                : question.optionTwo.text}</p>
+                                        )
+                                    }
+                                </li>
+                            )
+                        }
+                        )}
                     </ul>
                 </div>
             </div>
@@ -71,11 +70,9 @@ function mapStateToProps (props) {
         Object.keys(questions).sort((a,b) => {
             return questions[b].timestamp - questions[a].timestamp
         }).map(questionId => {
-            if(Object.keys(currentUser.answers).includes(questionId)){
-                return answered.push(questions[questionId])
-            } else {
-                return unanswered.push(questions[questionId])
-            }
+            Object.keys(currentUser.answers).includes(questionId)
+                ? answered.push(questions[questionId])
+                : unanswered.push(questions[questionId])
         })
     }
     return {
