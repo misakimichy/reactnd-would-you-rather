@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import Question from './Question';
-import { addQuestion } from '../actions/questions';
+import QuestionDetail from './QuestionDetail';
 
 class Dashboard extends Component {
     state = {
-        unanswered: true,
+        activeTab: '1',
     }
 
-    handleTabChange = event => {
+    handleTabChange = tab => {
+        if(this.state.activeTab !== tab)
         this.setState({
-            unanswered: !this.state.unanswered
+           activeTab: tab,
          })
     }
 
     render() {
-        const { currentUser, unanswered, answered } = this.props;
+        const { unansweredQId, answeredQId} = this.props;
 
         return(
             <div>
@@ -34,24 +33,19 @@ class Dashboard extends Component {
                     >
                     Answered
                     </div>
-                    <ul>
-                        {(this.state.unanswered ? unanswered : answered).map(question => {
-                            return (
-                                <li key={question.id}>
-                                    <Link to={`/questions/${question.id}`}>
-                                        Would You Rather...
-                                    </Link>
-                                    {!this.state.unanswered &&
-                                        (<p>You answered :
-                                            {question.optionOne.votes.includes(currentUser.id)
-                                                ? question.optionOne.text
-                                                : question.optionTwo.text}</p>
-                                        )
-                                    }
-                                </li>
-                            )
-                        }
-                        )}
+                    <ul class='unanswered'>
+                        {(unansweredQId.map(questionId => (
+                            <li key={questionId}>
+                                <QuestionDetail id={questionId} />
+                            </li>
+                        )))}
+                    </ul>
+                    <ul class='answered'>
+                        {answeredQId.map(questionId => (
+                            <li>
+                                <QuestionDetail id={questionId} />
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
@@ -59,27 +53,21 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps (props) {
-    const { users, questions, authedUser } = props;
-    let currentUser = null;
-    const unanswered = [];
-    const answered = [];
+function mapStateToProps ({ questions, authedUser}) {
+    const unanswered = Object.values(questions).filter(question =>
+        !question.optionOne.votes.includes(authedUser) &&
+            !question.optionTwo.votes.includes(authedUser));
 
-    if(authedUser){
-        currentUser = users[authedUser];
-        Object.keys(questions).sort((a,b) => {
-            return questions[b].timestamp - questions[a].timestamp
-        }).map(questionId => {
-            Object.keys(currentUser.answers).includes(questionId)
-                ? answered.push(questions[questionId])
-                : unanswered.push(questions[questionId])
-        })
-    }
+    const answered = Object.values(questions).filter(question =>
+        question.optionOne.votes.includes(authedUser) ||
+            question.optionTwo.votes.includes(authedUser));
+
     return {
-        currentUser: currentUser,
-        answered: answered,
-        unanswered: unanswered
+        unansweredQId: Object.values(unanswered)
+            .sort((a, b) => b.timestamp - a.timestamp).map(q => q.id),
+        answeredQId: Object.values(unanswered)
+            .sort((a, b) => b.timestamp - a.timestamp).map(q => q.id)
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Dashboard));
+export default connect(mapStateToProps)(Dashboard);
