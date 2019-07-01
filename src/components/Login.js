@@ -5,16 +5,13 @@ import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
     state ={
-        userId: null,
+        userId: '',
         toHome: false,
     }
 
     handleUserSelect = event => {
-        event.preventDefault();
         const userId = event.target.value;
-        this.setState(() => {
-            return userId;
-        })
+        this.setState(() =>  ({ userId }))
     }
 
     handleLogin = event => {
@@ -22,63 +19,61 @@ class Login extends Component {
         const { userId } = this.state;
         const { dispatch } = this.props;
 
-        dispatch(setAuthedUser(userId));
-        //Todo: Direct to Home
-        this.setState = previousState => {
-            return {
-                ...previousState,
-                toHome: true,
-            };
+        if(userId !== '') {
+            dispatch(setAuthedUser(userId));
+            this.setState(() => ({ toHome: true }))
         }
     }
 
     render() {
         const { userId, toHome } = this.state;
-        const { users, history } = this.props;
-        // console.log(userId)
-        const avatar = userId ? users[userId].avatarURL : 'https://image.flaticon.com/icons/svg/1107/1107472.svg';
+        const loginAvatar = 'https://image.flaticon.com/icons/svg/1107/1107472.svg';
 
+        const { home } = this.props.location.state || {home: {pathname:'/'}}
         if(toHome) {
-            const redirect = history.location.state;
-            if(redirect !== null) {
-                return <Redirect to={redirect} push={true} />
-            }
-            return <Redirect to='/' />
+            return <Redirect to={home} />
         }
+
         return (
-            <div className='login-container '>
-                <h3 className='center'>Please select a user.</h3>
+            <form className='login-container' onSubmit={this.handleLogin}>
+                <h1 className='center'>Please select a user.</h1>
                 <img
-                    src={avatar}
-                    alt={`Avatar of ${userId}`}
-                    className='avatar'
+                    className='login-avatar'
+                    src={loginAvatar}
+                    alt={`Choose user`}
                 />
                 <select value={userId} onChange={this.handleUserSelect}>
-                    <option>Select an username</option>
-                    {Object.keys(users).map(user => {
-                        return <option
-                                    key={user}
-                                    value={users[user].id}
-                                >
-                                    {users[user].id}
-                                </option>
-                    })}
+                    <option>Select a user</option>
+                    {this.props.users.map(user => (
+                        <option
+                            key={user}
+                            value={user.id}
+                        >
+                            {user.name}
+                        </option>
+                    ))}
                 </select>
                 <button
                     className="button"
-                    disabled={userId === null}
-                    onClick={event => this.handleLogin(event)}
+                    type='submit'
+                    disabled={userId === ''}
                 >
                     Log In
                 </button>
-            </div>
+            </form>
         );
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
     return {
-        users
+        users: Object.values(users).map(user => {
+            return({
+                id: user.id,
+                name: user.name
+            })
+        }),
+        userId: authedUser
     };
 }
 
