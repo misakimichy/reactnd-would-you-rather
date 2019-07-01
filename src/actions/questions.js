@@ -12,18 +12,10 @@ function addQuestion(question) {
    }
 }
 
-export function handleAddQuestion (optionOne, optionTwo) {
-    return (dispatch, getState) => {
-        const { authedUser } = getState();
+export function handleAddQuestion (question) {
+    return (dispatch) => {
         dispatch(showLoading());
-
-        const questionInfo = {
-            author: authedUser,
-            optionOne,
-            optionTwo
-        }
-
-        return saveQuestion(questionInfo)
+        return saveQuestion(question)
             .then(question => dispatch(addQuestion(question)))
             .then(() => dispatch(hideLoading()))
     };
@@ -36,28 +28,19 @@ export function receiveQuestions (questions) {
     };
 }
 
-function answerQuestion(authedUser, answer, qid) {
+function answerQuestion(questionAnswer) {
     return {
         type: ANSWER_QUESTION,
-        authedUser,
-        answer,
-        qid,
+        questionAnswer
     }
 }
 
-export function handleAnswerQuestion (answer, question) {
-    return (dispatch, getState) => {
-        const { authedUser } = getState();
+export function handleAnswerQuestion (questionAnswer) {
+    return (dispatch) => {
         dispatch(showLoading());
 
-        const answerInfo = {
-            authedUser,
-            answer,
-            qid: question.id,
-        };
-
-        return saveQuestionAnswer (answerInfo)
-        .then(question => dispatch(answerQuestion(authedUser, answer, question)))
+        return saveQuestionAnswer (questionAnswer)
+        .then(() => dispatch(answerQuestion(questionAnswer)))
         .then(() => dispatch(hideLoading()))
     };
 }
