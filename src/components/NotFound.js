@@ -1,18 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const NotFound = () => {
     return (
         <div>
-            <h3 className='center'>404 Page Not Found</h3>
+            <h1 className='center'>404 Page Not Found</h1>
+            <p>We couldn't find the question.</p>
+            <Link to='/'>Back to Home</Link>
         </div>
     );
 }
 
-function mapStateToProps ({ users }) {
-    return {
-        users,
-    };
-}
-
-export default connect(mapStateToProps)(NotFound);
+export default NotFound;
