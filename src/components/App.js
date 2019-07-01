@@ -9,6 +9,7 @@ import Login from './Login';
 import NewQuestion from './NewQuestion';
 import QuestionDetail from './QuestionDetail';
 import Nav from './Nav';
+import NotFound from './NotFound';
 
 class App extends Component {
   componentDidMount() {
@@ -22,15 +23,14 @@ class App extends Component {
           <LoadingBar />
           <div className='container'>
             {this.props.loggedOut === true
-              ? null
+              ? <Login />
               : <div>
-                  {/* <Route component={Login} /> */}
                   <Nav />
                   <Route path='/' exact component={Dashboard} />
-                  <Route path='/login' component={Login} />
                   <Route path='/questions/:id' component={QuestionDetail} />
                   <Route path='/add' component={NewQuestion} />
                   <Route path='/leaderboard' component={LeaderBoard} />
+                  <Route path='/404' component={NotFound} />
               </div>
             }
         </div>
