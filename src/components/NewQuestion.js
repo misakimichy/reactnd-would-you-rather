@@ -35,7 +35,6 @@ class NewQuestion extends Component {
 
 
     render() {
-        const { authedUser, users } = this.props;
         const { optionOne, optionTwo, toHome } = this.state;
 
         if(toHome) {
@@ -46,11 +45,6 @@ class NewQuestion extends Component {
             <div>
                 <h1 className='center'>New Question</h1>
                 <div className='question'>
-                    {/* <img
-                        className='avatar'
-                        src={`/${users[authedUser].avatarURL}`}
-                        alt={`Avatar of ${authedUser}`}
-                    /> */}
                     <h2>Would You Rather...</h2>
                     <form onSubmit={this.handleSubmit}>
                         <div className='option'>
