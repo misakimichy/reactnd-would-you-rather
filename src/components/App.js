@@ -9,6 +9,7 @@ import Login from './Login';
 import NewQuestion from './NewQuestion';
 import Question from './Question';
 import NotFound from './NotFound';
+import PrivateRoute from '../utils/PrivateRoute';
 
 class App extends Component {
   componentDidMount() {
@@ -25,11 +26,11 @@ class App extends Component {
               ? null
               : <div>
                   <Route path='/login' component={Login} />
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/questions/:question_id' component={Question} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={LeaderBoard} />
-                  <Route path='/404' component={NotFound} />
+                  <PrivateRoute path='/' exact component={Dashboard} />
+                  <PrivateRoute path='/questions/:question_id' component={Question} />
+                  <PrivateRoute path='/add' component={NewQuestion} />
+                  <PrivateRoute path='/leaderboard' component={LeaderBoard} />
+                  <PrivateRoute path='/404' component={NotFound} />
               </div>
             }
         </div>
