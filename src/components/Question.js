@@ -7,9 +7,13 @@ class Question extends Component {
     state = {
         vote: false,
     }
+
     handleClickAnswered = event => {
         event.preventDefault();
-        //Hande answered
+        const { vote } = this.state;
+        const { dispatch, question } = this.props;
+        //Invoke handleAnsweredQuestion
+        dispatch(handleAnswerQuestion(question.id, vote))
     }
     
     render() {
