@@ -8,7 +8,6 @@ import LeaderBoard from './LeaderBoard';
 import Login from './Login';
 import NewQuestion from './NewQuestion';
 import Question from './Question';
-import NotFound from './NotFound';
 import PrivateRoute from '../utils/PrivateRoute';
 
 class App extends Component {
@@ -30,7 +29,6 @@ class App extends Component {
                   <PrivateRoute path='/questions/:question_id' component={Question} />
                   <PrivateRoute path='/add' component={NewQuestion} />
                   <PrivateRoute path='/leaderboard' component={LeaderBoard} />
-                  <PrivateRoute path='/404' component={NotFound} />
               </div>
             }
         </div>
