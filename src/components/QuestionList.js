@@ -9,7 +9,8 @@ class QuestionList extends Component {
 
         return (
             <Link to={`/question/question_${id}`}>
-                <div class='center qestion-list'>
+                {/* Add avatar here */}
+                <div className='center qestion-list'>
                     <p>{optionOne.text}</p>
                     <span>or</span>
                     <p>{optionTwo.text}</p>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import QuestionDetail from './QuestionDetail';
+import QuestionList from './QuestionList';
 
 class Dashboard extends Component {
     state = {
@@ -20,7 +20,7 @@ class Dashboard extends Component {
         return(
             <div>
                 <h3 className='center'>Question List</h3>
-                <div>
+                <div className='center'>
                     <button
                         className='center'
                         onClick={() => this.handleTabChange('1')}
@@ -29,21 +29,23 @@ class Dashboard extends Component {
                     </button>
                     <button
                         className='center'
-                        onChange={() => this.handleTabChange('2')}
+                        onClick={() => this.handleTabChange('2')}
                     >
                     Answered
                     </button>
+                </div>
+                <div>
                     <ul className='question-list'>
                         {(unansweredQId.map(questionId => (
                             <li key={questionId}>
-                                <QuestionDetail id={questionId} />
+                                <QuestionList id={questionId} />
                             </li>
                         )))}
                     </ul>
                     <ul className='question-list'>
                         {answeredQId.map(questionId => (
                             <li key={questionId}>
-                                <QuestionDetail id={questionId} />
+                                <QuestionList id={questionId} />
                             </li>
                         ))}
                     </ul>
