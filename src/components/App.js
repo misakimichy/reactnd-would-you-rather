@@ -8,7 +8,6 @@ import LeaderBoard from './LeaderBoard';
 import Login from './Login';
 import NewQuestion from './NewQuestion';
 import Question from './Question';
-import Nav from './Nav';
 import NotFound from './NotFound';
 
 class App extends Component {
