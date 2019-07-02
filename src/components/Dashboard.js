@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionDetail from './QuestionDetail';
-import Nav from './Nav';
 
 class Dashboard extends Component {
     state = {
@@ -20,31 +19,30 @@ class Dashboard extends Component {
 
         return(
             <div>
-                <Nav />
                 <h3 className='center'>Question List</h3>
                 <div>
-                    <div
+                    <button
                         className='center'
-                        onChange={this.handleTabChange}
+                        onClick={() => this.handleTabChange('1')}
                     >
                     Unanswered
-                    </div>
-                    <div
+                    </button>
+                    <button
                         className='center'
-                        onChange={this.handleTabChange}
+                        onChange={() => this.handleTabChange('2')}
                     >
                     Answered
-                    </div>
-                    <ul class='unanswered'>
+                    </button>
+                    <ul className='question-list'>
                         {(unansweredQId.map(questionId => (
                             <li key={questionId}>
                                 <QuestionDetail id={questionId} />
                             </li>
                         )))}
                     </ul>
-                    <ul class='answered'>
+                    <ul className='question-list'>
                         {answeredQId.map(questionId => (
-                            <li>
+                            <li key={questionId}>
                                 <QuestionDetail id={questionId} />
                             </li>
                         ))}
@@ -67,7 +65,7 @@ function mapStateToProps ({ questions, authedUser}) {
     return {
         unansweredQId: Object.values(unanswered)
             .sort((a, b) => b.timestamp - a.timestamp).map(q => q.id),
-        answeredQId: Object.values(unanswered)
+        answeredQId: Object.values(answered)
             .sort((a, b) => b.timestamp - a.timestamp).map(q => q.id)
     }
 }
