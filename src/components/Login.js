@@ -45,12 +45,7 @@ class Login extends Component {
                 <select value={userId} onChange={this.handleUserSelect}>
                     <option>Select a user</option>
                     {this.props.users.map(user => (
-                        <option
-                            key={user}
-                            value={user.id}
-                        >
-                            {user.name}
-                        </option>
+                        <option key={user.id}>{user.name}</option>
                     ))}
                 </select>
                 <button
