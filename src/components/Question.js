@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { handleAnswerQuestion } from '../actions/questions';
 import NotFound from './NotFound';
+import QuestionDetail from './QuestionDetail';
 
 class Question extends Component {
     state = {
@@ -25,16 +25,9 @@ class Question extends Component {
                 {question
                     ? <div>
                             <h1>Would You Rather</h1>
-                            <div>{user.name}</div>
+                            <div>{question.author}</div>
                             <div>
-                                {/* Work on this section!!! */}
-                                <Link to='#' onClick={this.handleClickAnswered}>
-                                    <div>
-                                        {showResult === true &&
-                                            <div>Numver of Votes: {votes.length} ({percentage}%)</div>
-                                        }
-                                    </div>
-                                </Link>
+                                <QuestionDetail />
                             </div>
                     </div>
                     : <NotFound />
