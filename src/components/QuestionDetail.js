@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { handleAnswerQuestion } from '../actions/questions';
 
 class QuestionDetail extends Component {
-    state = {
-        vote: false,
-    }
-
-    handleClickAnswered = event => {
-        event.preventDefault();
-        const { vote } = this.state;
-        const { dispatch, question } = this.props;
-        //Invoke handleAnsweredQuestion
-        dispatch(handleAnswerQuestion(question.id, vote))
-    }
-
     handleClick = event => {
         event.preventDefault();
-        const { optionName } = this.props
-        this.handleClickAnswered(optionName)
+        const { onClick, optionName } = this.props
+        onClick(optionName);
     }
 
     render() {
@@ -28,24 +15,19 @@ class QuestionDetail extends Component {
 
         return (
             showResult === false
-                ? <Link
-                    to='#'
-                    onClick={this.handleClick}
-                    >
-                    Question Detail
+                ? <Link to='#' onClick={this.handleClick}>
                     <div className={isVoted ? ('selected') : ''}>
                         <h1>{text}</h1>
-                        {showResult == true &&
-                            (<div>Number of Votes: {votes.length} ({percentage}%)</div>)
+                        {showResult === true &&
+                            (<div className='result'>Number of Votes: {votes.length} ({percentage}%)</div>)
                         }
                     </div>
                 </Link>
-                : <div>
-                    <div className={isVoted ? ('selected') : ''}>
-                        {showResult === true &&
-                            <div>Number of Votes: {votes.length} ({percentage}%)</div>
-                        }
-                    </div>
+                : <div className={isVoted ? ('selected') : ''}>
+                    <h1>{text}</h1>
+                    {showResult === true &&
+                        <div className='result'>Number of Votes: {votes.length} ({percentage}%)</div>
+                    }
                 </div>
         )
     }

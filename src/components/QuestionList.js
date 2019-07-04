@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 class QuestionList extends Component {
     render() {
-        const { authedUser, users, question } = this.props;
+        const { users, question } = this.props;
         const { id, optionOne, optionTwo } = question;
 
         return (
-            <Link to={`/question/question_${id}`}>
+            <Link to={`/questions/${id}`}>
                 <div className='question-list'>
                     <img
                         className='avatar'
@@ -25,9 +25,8 @@ class QuestionList extends Component {
     }
 }
 
-const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
+const mapStateToProps = ({ users, questions }, { id }) => {
     return {
-        authedUser,
         users,
         question: questions[id]
     };
