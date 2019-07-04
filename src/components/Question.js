@@ -1,26 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import NotFound from './NotFound';
 import QuestionDetail from './QuestionDetail';
+import { handleAnswerQuestion } from '../actions/questions';
 
 class Question extends Component {
+    state = {
+        vote: false,
+    }
     
+    handleAnswer = answer => {
+        const { dispatch, question } = this.props;
+        //Invoke handleAnsweredQuestion
+        dispatch(handleAnswerQuestion(question.id, answer))
+    }
+
     render() {
         const { question } = this.props;
         
         return (
-            <div>
+            <Fragment>
                 {question
-                    ? <div>
+                    ? (<div>
                             <h1>Would You Rather</h1>
-                            <div>{question.author}</div>
                             <div>
-                                <QuestionDetail questionId={question.id} optionName="optionOne" />
+                                <QuestionDetail
+                                    questionId={question.id}
+                                    optionName="optionOne"
+                                    onClick={this.handleAnswer}
+                                />
                             </div>
-                    </div>
+                    </div>)
                     : <NotFound />
                 }
-            </div>
+            </Fragment>
         )
     }
 }
