@@ -4,24 +4,31 @@ import { Link } from 'react-router-dom';
 
 class QuestionList extends Component {
     render() {
-        const { question } = this.props;
+        const { authedUser, users, question } = this.props;
         const { id, optionOne, optionTwo } = question;
 
         return (
             <Link to={`/question/question_${id}`}>
-                {/* Add avatar here */}
-                <div className='center qestion-list'>
-                    <p>{optionOne.text}</p>
-                    <span>or</span>
-                    <p>{optionTwo.text}</p>
+                <div className='question-list'>
+                    <img
+                        className='avatar'
+                        src={users[question.author].avatarURL}
+                        alt={`avatar of ${question.author}`}
+                    />
+                    <span className='username'>{users[question.author].name}</span>
+                    <div className='option-one'>{optionOne.text}</div>
+                    <span id='or'>or</span>
+                    <div className='option-two'>{optionTwo.text}</div>
                 </div>
             </Link>
         );
     }
 }
 
-const mapStateToProps = ({ questions }, { id }) => {
+const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
     return {
+        authedUser,
+        users,
         question: questions[id]
     };
 }
