@@ -4,6 +4,9 @@
   --black: #011627;
   --green: #2ec4b6;
   --green-hover: #32e2d2;
+  --red: #e71d36;
+  --yellow: #ff9f1c;
+
 }
 
 body {
@@ -13,7 +16,12 @@ body {
 }
 
 a, li {
+  color: inherit;
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--yellow);
 }
 
 li {
@@ -94,10 +102,12 @@ select {
 /* Question List */
 .question-list {
   max-width: 500px;
+  min-height: 100px;
   margin: 0 auto;
   border: 1px solid var(--black);
+  border-radius: 5px;
   display: grid;
-  grid-template-rows: 40% 1fr 10% 1fr;
+  grid-template-rows: 40% 25px 10% 25px;
   grid-template-columns: 30% 70%;
 }
 
