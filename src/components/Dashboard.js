@@ -25,26 +25,28 @@ class Dashboard extends Component {
             // reactstarp tabs: https://reactstrap.github.io/components/tabs/
             <div>
                 <Nav tabs>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: this.state.activeTab === '1'})}
-                            onClick={() => this.handleTabChange('1')}
-                        >
-                            Unanswered
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: this.state.activeTab === '2'})}
-                            onClick={() => this.handleTabChange('2')}
-                        >
-                            See Answered
-                        </NavLink>
-                    </NavItem>
+                    <div className='tabs'>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({active: this.state.activeTab === '1'})}
+                                onClick={() => this.handleTabChange('1')}
+                            >
+                                Unanswered
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({active: this.state.activeTab === '2'})}
+                                onClick={() => this.handleTabChange('2')}
+                            >
+                                See Answered
+                            </NavLink>
+                        </NavItem>
+                    </div>
                 </Nav>
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId='1'>
-                        <ul>
+                        <ul className='questions'>
                             {unansweredQids.map(questionId => (
                                 <li key={questionId}>
                                     <QuestionList id={questionId}/>
@@ -53,7 +55,7 @@ class Dashboard extends Component {
                         </ul>
                     </TabPane>
                     <TabPane tabId='2'>
-                        <ul>
+                        <ul className='questions'>
                             {answeredQids.map(questionId => (
                                 <li key={questionId}>
                                     <QuestionList id={questionId} />
