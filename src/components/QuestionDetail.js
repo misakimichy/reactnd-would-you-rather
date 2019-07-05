@@ -16,17 +16,21 @@ class QuestionDetail extends Component {
         return (
             showResult === false
                 ? <Link to='#' onClick={this.handleClick}>
-                    <div className={isVoted ? ('selected') : ''}>
+                    <div className={isVoted ? 'selected' : ''}>
                         <h1>{text}</h1>
                         {showResult === true &&
-                            (<div className='result'>Number of Votes: {votes.length} ({percentage}%)</div>)
+                            <div className='result'>
+                                Number of Votes: {votes.length} {percentage}%
+                            </div>
                         }
                     </div>
                 </Link>
-                : <div className={isVoted ? ('selected') : ''}>
+                : <div className={isVoted ? 'selected' : ''}>
                     <h1>{text}</h1>
                     {showResult === true &&
-                        <div className='result'>Number of Votes: {votes.length} ({percentage}%)</div>
+                        <div className='result'>
+                            Number of Votes: {votes.length} {percentage}%
+                        </div>
                     }
                 </div>
         )
@@ -42,8 +46,8 @@ function mapStateToProps ({ authedUser, questions, users}, { questionId, optionN
         option,
         optionName,
         isVoted: option.votes.includes(authedUser),
-        percentage: ((option.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100),
-        showResult: Object.keys(currentUser.answers).includes(questionId)
+        percentage: ((option.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100).toFixed(1),
+        showResult: Object.keys(currentUser.answers).includes(questionId),
     }
 }
 
