@@ -17,7 +17,7 @@ class QuestionList extends Component {
                     />
                     <span className='username'>{users[question.author].name}</span>
                     <div className='option-one'>{optionOne.text}</div>
-                    <span id='or'>or</span>
+                    <div id='or'>or</div>
                     <div className='option-two'>{optionTwo.text}</div>
                 </div>
             </Link>
