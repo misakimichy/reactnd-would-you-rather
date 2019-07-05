@@ -75,39 +75,46 @@ select {
 }
 
 /* Dashboard */
-.tab {
-  width: 100%;
-  max-width: 250px;
+.tabs {
+  display: flex;
   margin: 0 auto;
 }
 
-.tab button {
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link {
   cursor: pointer;
-  width: 110px;
+  width: 130px;
+  color: var(--black);
   background: var(--green);
   border-radius: 5px;
   padding: 10px;
   font-size: 16px;
-  outline: none;
+  text-align: center;
 }
 
-.tab button:hover {
+.nav-tabs .nav-link:hover {
   background-color: var(--green-hover);
 }
 
-.button-left {
-  margin-right: 10px;
+.questions {
+  position: relative;
+  top: 50px;
 }
 
 /* Question List */
 .question-list {
+  width: 100%;
   max-width: 500px;
-  min-height: 100px;
+  height: 120px;
   margin: 0 auto;
   border: 1px solid var(--black);
   border-radius: 5px;
   display: grid;
-  grid-template-rows: 40% 25px 10% 25px;
+  grid-template-rows: 35% 25% 15% 25%;
   grid-template-columns: 30% 70%;
 }
 
@@ -116,6 +123,7 @@ select {
   grid-column: 1 / 2;
   display: flex;
   justify-self: center;
+  align-self: center;
 }
 
 .username {
@@ -131,6 +139,11 @@ select {
   grid-column: 2 / 3;
   display: flex;
   align-items: center;
+}
+
+#or {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
 }
 
 .option-two {
