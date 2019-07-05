@@ -4,16 +4,15 @@ import { connect } from 'react-redux';
 class LeaderBoard  extends Component {
     render() {
         const { users } = this.props;
-        const userArray = Object.keys(users).map(key => users[key]);
 
         return (
             <div>
-                <h3 className='center'>Leader Board</h3>
+                <h1 className='center'>Leader Board</h1>
                 <ul className='user-list'>
-                    {userArray.map(user =>(
+                    {users.map((user, index) => (
                         <li
                             className='user'
-                            key={user}
+                            key={user.id}
                         >
                             <img
                                 className='avatar'
@@ -33,7 +32,9 @@ class LeaderBoard  extends Component {
 
 function mapStateToProps ({ users }) {
     return {
-        users
+        
+        users: Object.keys(users).sort((a,b) => (users[b].questions.length + Object.keys(users[b].answers).length) - (users[a].questions.length + Object.keys(users[a].answers).length))
+            .map((user) => users[user]),
     }
 }
 
