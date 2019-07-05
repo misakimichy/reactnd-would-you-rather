@@ -28,6 +28,7 @@ li {
   list-style-type: none;
 }
 
+/* Login screen */
 .login-container {
   width: 60%;
   margin: 200px auto;
@@ -154,14 +155,25 @@ select {
 }
 
 /* Nav */
-.nav ul{
-  display: flex;
-  list-style: none;
+.navbar {
+  width: 100%;
+  padding: 0;
+  margin: 10px auto;
+  font-size: 18px;
 }
 
-.nav li {
-  height: 20px;
-  padding: 10px;
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar-left {
+  display: flex;
+  padding: 0;
+}
+
+.navbar-right {
+  display: flex;
+  margin-left: 500px;
 }
 
 /* New Question */
