@@ -11,7 +11,6 @@ class Question extends Component {
     
     handleAnswer = answer => {
         const { dispatch, question } = this.props;
-        //Invoke handleAnsweredQuestion
         dispatch(handleAnswerQuestion(question.id, answer))
     }
 
@@ -21,16 +20,22 @@ class Question extends Component {
         return (
             <Fragment>
                 {question
-                    ? (<div>
+                    ? <div>
                             <h1>Would You Rather</h1>
+                            <div>{question.author}</div>
                             <div>
                                 <QuestionDetail
                                     questionId={question.id}
                                     optionName="optionOne"
                                     onClick={this.handleAnswer}
                                 />
+                                <QuestionDetail
+                                    questionId={question.id}
+                                    optionName="optionTwo"
+                                    onClick={this.handleAnswer}
+                                />
                             </div>
-                    </div>)
+                    </div>
                     : <NotFound />
                 }
             </Fragment>
@@ -38,15 +43,13 @@ class Question extends Component {
     }
 }
 
-function mapStateToProps({ authedUser, users, questions }, props) {
-    const user = users[authedUser];
-    const questionId = props.match.params;
-    const question = questions[questionId];
+function mapStateToProps({ authedUser, questions }, props) {
+    const { question_id } = props.match.params;
+    const question = questions[question_id];
     
     return {
         authedUser,
         question,
-        // showResult: Object.keys(user.answers).includes(questionId),
     };
 }
 
