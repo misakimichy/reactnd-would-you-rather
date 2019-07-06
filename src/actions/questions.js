@@ -12,14 +12,14 @@ function addQuestion(question) {
    }
 }
 
-export function handleAddQuestion (optionOne, optionTwo) {
+export function handleAddQuestion (optionOneText, optionTwoText) {
     return (dispatch, getState) => {
         const { authedUser } = getState();
         dispatch(showLoading());
 
         return saveQuestion({
-            optionOne,
-            optionTwo,
+            optionOneText,
+            optionTwoText,
             authedUser: authedUser
         }).then(question => dispatch(addQuestion(question)))
             .then(() => dispatch(hideLoading()))
@@ -33,20 +33,22 @@ export function receiveQuestions (questions) {
     };
 }
 
-function answerQuestion(questionAnswer) {
+function answerQuestion(authedUser, qid, answer) {
     return {
         type: ANSWER_QUESTION,
-        questionAnswer
+        authedUser,
+        qid,
+        answer,
     }
 }
 
 export function handleAnswerQuestion (qid, answer) {
     return (dispatch, getState) => {
-        const { authedUser, questionAnswer } = getState();
+        const { authedUser } = getState();
         dispatch(showLoading());
 
         return saveQuestionAnswer (authedUser, qid, answer)
-        .then(() => dispatch(answerQuestion(questionAnswer)))
+        .then(() => dispatch(answerQuestion(authedUser, qid, answer)))
         .then(() => dispatch(hideLoading()))
     };
 }
