@@ -20,7 +20,7 @@ class Nav extends Component {
 
     render() {
             const { toLogin } = this.state;
-            const { user } = this.props;
+            const { authedUser} = this.props;
 
             if(toLogin === true) {
                 return (<Redirect to='/login' />)
@@ -55,7 +55,7 @@ class Nav extends Component {
                     </li>
                 </ul>
                 <ul className='navbar-right'>
-                    <li> Hello username</li>
+                    <li> Hello {authedUser}</li>
                     <li>
                         <NavLink
                             to='#'
@@ -70,9 +70,9 @@ class Nav extends Component {
     }
 }
 
-function mapStateToProps ({ authedUser, users }) {
+function mapStateToProps ({ authedUser }) {
     return {
-        user: users[authedUser]
+        authedUser,
     };
 }
 

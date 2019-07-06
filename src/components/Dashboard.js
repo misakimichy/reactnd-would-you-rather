@@ -70,15 +70,20 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ authedUser, questions }) {
-    const unansweredQuestions = Object.values(questions).filter((question) =>
-        !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser));
-    const answeredQuestions = Object.values(questions).filter((question) =>
-        question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser));
+    // console.log('keys of questions: ', Object.keys(questions));
+    // console.log('values of questions: ', Object.values(questions));
+    // console.log('question author', Object.values(questions)[0].author);
+
+    const unansweredQuestions = Object.values(questions).filter(question =>
+        question.optionOne.votes.length === 0 && question.optionTwo.votes.length === 0);
+    const answeredQuestions = Object.values(questions).filter(question =>
+        question.optionOne.votes.length > 0 || question.optionTwo.votes.length > 0);
     
     const unansweredQIds = Object.values(unansweredQuestions)
         .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
     const answeredQIds = Object.values(answeredQuestions)
         .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
+
 
     return {
         unansweredQIds,
