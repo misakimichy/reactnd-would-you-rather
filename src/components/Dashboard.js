@@ -18,12 +18,11 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { unansweredQids, answeredQids } = this.props;
+        const { unansweredQIds, answeredQIds } = this.props;
     
         return(
-            // reactstrap nav: https://reactstrap.github.io/components/navs/
-            // reactstarp tabs: https://reactstrap.github.io/components/tabs/
             <div>
+                {/* reactstrap nav: https://reactstrap.github.io/components/navs/ */}
                 <Nav tabs>
                     <div className='tabs'>
                         <NavItem>
@@ -44,10 +43,11 @@ class Dashboard extends Component {
                         </NavItem>
                     </div>
                 </Nav>
+                {/* reactstarp tabs: https://reactstrap.github.io/components/tabs/ */}
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId='1'>
                         <ul className='questions'>
-                            {unansweredQids.map(questionId => (
+                            {unansweredQIds.map(questionId => (
                                 <li key={questionId}>
                                     <QuestionList id={questionId}/>
                                 </li>
@@ -56,7 +56,7 @@ class Dashboard extends Component {
                     </TabPane>
                     <TabPane tabId='2'>
                         <ul className='questions'>
-                            {answeredQids.map(questionId => (
+                            {answeredQIds.map(questionId => (
                                 <li key={questionId}>
                                     <QuestionList id={questionId} />
                                 </li>
@@ -70,16 +70,19 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ authedUser, questions }) {
-    const unansweredQuestions = Object.values(questions).filter(question =>
-        !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)
-    );
-    const answeredQuestions = Object.values(questions).filter(question =>
-        question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
-    );
+    const unansweredQuestions = Object.values(questions).filter((question) =>
+        !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser));
+    const answeredQuestions = Object.values(questions).filter((question) =>
+        question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser));
+    
+    const unansweredQIds = Object.values(unansweredQuestions)
+        .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
+    const answeredQIds = Object.values(answeredQuestions)
+        .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
 
     return {
-        unansweredQids: Object.values(unansweredQuestions).sort((a, b) => b.timestamp - a.timestamp).map(q => q.id),
-        answeredQids: Object.values(answeredQuestions).sort((a, b) => b.timestamp - a.timestamp).map(q => q.id),
+        unansweredQIds,
+        answeredQIds,
     }
 }
 
