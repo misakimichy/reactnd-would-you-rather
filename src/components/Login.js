@@ -36,14 +36,14 @@ class Login extends Component {
 
         return (
             <form className='login-container' onSubmit={this.handleLogin}>
-                <h1 className='center'>Please select a user.</h1>
                 <img
                     className='login-avatar'
                     src={loginAvatar}
                     alt={`Choose user`}
                 />
+                <h1 className='center'>Please select a user</h1>
                 <select value={userId} onChange={this.handleUserSelect}>
-                    <option>Select a user</option>
+                    <option>Username</option>
                     {this.props.users.map(user => (
                         <option key={user.id}>{user.name}</option>
                     ))}

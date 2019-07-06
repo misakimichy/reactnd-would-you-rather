@@ -38,8 +38,9 @@ li {
   flex-direction: column;
 }
 
-.login-container img {
+.login-avatar{
   margin: 0 auto;
+  width: 100%;
 }
 
 select {
@@ -183,7 +184,6 @@ select {
 .option-container {
   width: 90%;
   margin: 0 auto;
-
 }
 
 /* Nav */
