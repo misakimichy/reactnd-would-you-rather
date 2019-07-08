@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class QuestionList extends Component {
     render() {
-        const { users, question } = this.props;
+        const { user, question } = this.props;
         const { id, optionOne, optionTwo } = question;
 
         return (
@@ -12,10 +12,10 @@ class QuestionList extends Component {
                 <div className='question-list'>
                     <img
                         className='avatar'
-                        src={users[question.author].avatarURL}
+                        src={user.avatarURL}
                         alt={`avatar of ${question.author}`}
                     />
-                    <span className='username'>{users[question.author].name}</span>
+                    <span className='username'>{user.name}</span>
                     <div className='option-one'>{optionOne.text}</div>
                     <div id='or'>or</div>
                     <div className='option-two'>{optionTwo.text}</div>
@@ -26,9 +26,12 @@ class QuestionList extends Component {
 }
 
 const mapStateToProps = ({ users, questions }, { id }) => {
+    const question = questions[id];
+    const user = users[question.author];
+
     return {
-        users,
-        question: questions[id]
+        user,
+        question,
     };
 }
 
