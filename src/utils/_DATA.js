@@ -62,7 +62,6 @@ let questions = {
     }
   },
 
-  // Removed optionTwo's vote to check unanswered filter is working
   "am8ehyc8byjqgar0jgpub9": {
     id: 'am8ehyc8byjqgar0jgpub9',
     author: 'sarahedo',
@@ -72,7 +71,7 @@ let questions = {
       text: 'be telekinetic',
     },
     optionTwo: {
-      votes: [],
+      votes: ['sarahedo'],
       text: 'be telepathic'
     }
   },
