@@ -3,7 +3,7 @@ import { saveQuestion, saveQuestionAnswer } from '../utils/api';
 
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-export const ANSWER_QUESTION = 'ANSWER_QUESTION';
+export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER';
 
 function addQuestion(question) {
     return{
@@ -33,9 +33,9 @@ export function receiveQuestions (questions) {
     };
 }
 
-function answerQuestion(authedUser, qid, answer) {
+function addQuestionAnswer(authedUser, qid, answer) {
     return {
-        type: ANSWER_QUESTION,
+        type: ADD_QUESTION_ANSWER,
         authedUser,
         qid,
         answer,
@@ -48,7 +48,7 @@ export function handleAnswerQuestion (qid, answer) {
         dispatch(showLoading());
 
         return saveQuestionAnswer (authedUser, qid, answer)
-        .then(() => dispatch(answerQuestion(authedUser, qid, answer)))
+        .then(() => dispatch(addQuestionAnswer(authedUser, qid, answer)))
         .then(() => dispatch(hideLoading()))
     };
 }
