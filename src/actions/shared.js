@@ -1,5 +1,5 @@
 import { getInitialData } from '../utils/api';
-import { receiveQuestions} from '../actions/questions';
+import { receiveQuestions } from '../actions/questions';
 import { receiveUsers} from '../actions/users';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
