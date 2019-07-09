@@ -186,6 +186,11 @@ select {
   margin: 0 auto;
 }
 
+/* Question Detail */
+.selected {
+  background-color: var(--green-hover);
+}
+
 /* Nav */
 .navbar {
   width: 100%;
