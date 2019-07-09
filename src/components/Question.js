@@ -15,18 +15,18 @@ class Question extends Component {
     }
 
     render() {
-        const { users, question } = this.props;
+        const { question } = this.props;
         
         return (
             <Fragment>
                 {question
                 ? <div>
-                    <h1 className='center'>This is Question Component</h1>
+                    <h1 className='center'>Question</h1>
                     <div className='question-card'>
                         <div className='author-info'>
                             <img
                                 className='question-card-avatar'
-                                src={users[question.author].avatarURL}
+                                src={question.author.avatarURL}
                                 alt={`avatar of ${question.author}`}
                             />
                             <div className='question-author'>{question.author}</div>
@@ -57,11 +57,12 @@ class Question extends Component {
 function mapStateToProps({ authedUser, questions, users }, props) {
     const { question_id } = props.match.params;
     const question = questions[question_id];
-    
+    const user = users[question.author];
+
     return {
         authedUser,
         question,
-        users,
+        user,
     };
 }
 
