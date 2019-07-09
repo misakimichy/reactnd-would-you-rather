@@ -38,9 +38,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ questions, users}) {
+function mapStateToProps ({ questions, users }) {
   const isEmpty = obj => {
-    for (const key in obj) {
+    for (let key in obj) {
       if(obj.hasOwnProperty(key))
         return false;
     }
