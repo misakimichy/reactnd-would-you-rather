@@ -84,12 +84,26 @@ function mapStateToProps ({ authedUser, users, questions }) {
     const answeredQIds = Object.values(answeredQuestions)
         .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
 
-    //     console.log('Object.values of questions: ', Object.values(questions));
-    //     console.log('unanswered question.author includes?:', Object.values(questions).filter(question =>
-    //         question.optionOne.votes.includes(question.author)));
-    //     console.log('unansweredQuestions', unansweredQuestions);
-    //     console.log('unansweredQids: ', unansweredQIds);
-    //     console.log('user name: ', Object.values(users).filter(user => user.name.includes(authedUser)));
+    const user = Object.values(users).filter(user => {
+        if(user.name === authedUser) {
+            return console.log('this user answered to these Qs: ', user.answers);
+        }
+        console.log('not unserwed yet: ', Object.values(questions).filter(question => {
+            question.id.includes(Object.keys(user.answers))
+        }));
+    });
+    // Sara :  "6ni6ok3ym7mf1p33lnez", "8xf0y6ziyjabvozdd253nd", "am8ehyc8byjqgar0jgpub9", "oxhs1bqm25b708cmbf3g"
+    // Tyler:  "loxhs1bqm25b708cmbf3g", "xj352vofupe1dqz9emx13r"
+    // John:  "xj352vofupe1dqz9emx13r", "vthrdm985a262al8qx3do", "6ni6ok3ym7mf1p33lnez"
+
+
+    // console.log('Object.values of questions: ', Object.values(questions));
+    // console.log('unanswered question.author includes?:', Object.values(questions).filter(question =>
+    //     question.optionOne.votes.includes(question.author)));
+    // console.log('unansweredQuestions', unansweredQuestions);
+    // console.log('unansweredQids: ', unansweredQIds);
+    // console.log('user name: ', Object.values(users).filter(user => user.name.includes(authedUser)));
+
 
     return {
         unansweredQIds,
