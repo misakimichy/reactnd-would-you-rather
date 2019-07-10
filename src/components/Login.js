@@ -4,32 +4,32 @@ import { Redirect } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
-    state ={
-        userId: '',
+    state = {
+        username: '',
         toHome: false,
     }
 
     handleUserSelect = event => {
-        const userId = event.target.value;
-        this.setState(() =>  ({ userId }))
+        const username = event.target.value;
+        this.setState(() =>  ({ username }))
     }
 
     handleLogin = event => {
         event.preventDefault();
-        const { userId } = this.state;
+        const { username } = this.state;
         const { dispatch } = this.props;
 
-        if(userId !== '') {
-            dispatch(setAuthedUser(userId));
+        if(username !== '') {
+            dispatch(setAuthedUser(username));
             this.setState(() => ({ toHome: true }))
         }
     }
 
     render() {
-        const { userId, toHome } = this.state;
+        const { username, toHome } = this.state;
         const loginAvatar = 'https://image.flaticon.com/icons/svg/1107/1107472.svg';
 
-        const { home } = this.props.location.state || {home: {pathname:'/'}}
+        const home = this.props.location.state || {home: {pathname:'/'}}
         if(toHome) {
             return <Redirect to={home} />
         }
@@ -42,7 +42,7 @@ class Login extends Component {
                     alt={`Choose user`}
                 />
                 <h1 className='center'>Please select a user</h1>
-                <select value={userId} onChange={this.handleUserSelect}>
+                <select value={username} onChange={this.handleUserSelect}>
                     <option>Username</option>
                     {this.props.users.map(user => (
                         <option key={user.id}>{user.name}</option>
@@ -51,7 +51,7 @@ class Login extends Component {
                 <button
                     className="button"
                     type='submit'
-                    disabled={userId === ''}
+                    disabled={username === ''}
                 >
                     Log In
                 </button>
@@ -65,10 +65,10 @@ function mapStateToProps({ users, authedUser }) {
         users: Object.values(users).map(user => {
             return({
                 id: user.id,
-                name: user.name
+                name: user.id
             })
         }),
-        userId: authedUser
+        username: authedUser
     };
 }
 
