@@ -64,7 +64,6 @@ function mapStateToProps({ users, authedUser }) {
     return {
         users: Object.values(users).map(user => {
             return({
-                id: user.id,
                 name: user.id
             })
         }),
