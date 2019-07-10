@@ -15,7 +15,7 @@ class Question extends Component {
     }
 
     render() {
-        const { question } = this.props;
+        const { question, user } = this.props;
         
         return (
             <Fragment>
@@ -26,7 +26,7 @@ class Question extends Component {
                         <div className='author-info'>
                             <img
                                 className='question-card-avatar'
-                                src={question.author.avatarURL}
+                                src={user.avatarURL}
                                 alt={`avatar of ${question.author}`}
                             />
                             <div className='question-author'>{question.author}</div>
