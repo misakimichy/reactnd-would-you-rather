@@ -66,33 +66,35 @@ class Question extends Component {
                 }
                 {!answered &&
                     <form onSubmit={this.handleAnswer}>
-                        <div>!answered</div>
-                            <label>
+                        <h1 className='center'>!answered</h1>
+                            <div className='poll'>
                                 <input
+                                    className='radio'
                                     type='radio'
                                     value='optionOne'
+                                    for='radio1'
                                     checked={selectOption === 'optionOne'}
                                     onChange={this.handleSelectOption}
                                 />
-                                    {optionOne.text}
-                            </label>
-                            <span>or</span>
-                            <label>
+                                    <label htmlFor='radio1'>{optionOne.text}</label>
+                                <span>or</span>
                                 <input
+                                    className='radio'
                                     type='radio'
                                     value='optionTwo'
+                                    for='radio2'
                                     checked={selectOption === 'optionTwo'}
                                     onChange={this.handleSelectOption}
                                 />
-                                    {optionTwo.text}
-                            </label>
-                            <button
+                                     <label htmlFor='radio2'>{optionTwo.text}</label>
+                                <button
                                 className='button'
                                 type='submit'
                                 disabled={selectOption === ''}
-                            >
-                                Vote
-                            </button>
+                                >
+                                    Vote
+                                </button>
+                            </div>
                     </form>
                 }
             </Fragment>

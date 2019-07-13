@@ -156,7 +156,8 @@ select {
 }
 
 /* Question */
-.question-card {
+.question-card,
+.poll {
   max-width: 500px;
   margin: 0 auto;
   border: 1px solid var(--black);
@@ -183,7 +184,22 @@ select {
 
 .option-container {
   width: 90%;
+}
+
+.poll {
   margin: 0 auto;
+  display: grid;
+  padding: 10px 0 0 20px;
+}
+
+input[type=radio] {
+  float: left;
+  display: block;
+}
+
+label {
+  margin-left: 30px;
+  display: block;
 }
 
 /* Question Detail */
