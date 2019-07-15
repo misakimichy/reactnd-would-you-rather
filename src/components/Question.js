@@ -66,31 +66,29 @@ class Question extends Component {
                 }
                 {!answered &&
                     <form onSubmit={this.handleAnswer}>
-                        <h1 className='center'>!answered</h1>
+                        <h1 className='center'>Would you rather</h1>
                             <div className='poll'>
                                 <input
-                                    className='radio'
                                     type='radio'
                                     value='optionOne'
-                                    for='radio1'
+                                    id='radio1'
                                     checked={selectOption === 'optionOne'}
                                     onChange={this.handleSelectOption}
                                 />
-                                    <label htmlFor='radio1'>{optionOne.text}</label>
-                                <span>or</span>
+                                <label htmlFor='radio1'>{optionOne.text}</label>
+                                <div>or</div>
                                 <input
-                                    className='radio'
                                     type='radio'
                                     value='optionTwo'
-                                    for='radio2'
+                                    id='radio2'
                                     checked={selectOption === 'optionTwo'}
                                     onChange={this.handleSelectOption}
                                 />
-                                     <label htmlFor='radio2'>{optionTwo.text}</label>
+                                <label htmlFor='radio2'>{optionTwo.text}</label>
                                 <button
-                                className='button'
-                                type='submit'
-                                disabled={selectOption === ''}
+                                    className='button'
+                                    type='submit'
+                                    disabled={selectOption === ''}
                                 >
                                     Vote
                                 </button>

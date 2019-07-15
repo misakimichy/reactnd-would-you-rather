@@ -155,7 +155,7 @@ select {
   align-items: center;
 }
 
-/* Question */
+/* Question - answered */
 .question-card,
 .poll {
   max-width: 500px;
@@ -186,20 +186,21 @@ select {
   width: 90%;
 }
 
+/* Question - unanswered */
 .poll {
   margin: 0 auto;
-  display: grid;
   padding: 10px 0 0 20px;
 }
 
 input[type=radio] {
-  float: left;
-  display: block;
+  vertical-align: text-top;
+  padding: 10px;
 }
 
 label {
   margin-left: 30px;
-  display: block;
+  font-size: 24px;
+  padding: 10px;
 }
 
 /* Question Detail */
