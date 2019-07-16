@@ -20,8 +20,8 @@ class LeaderBoard  extends Component {
                                 alt={`Avatar of ${user.id}`}
                             />
                             <span className='user-name'>{user.name}</span>
-                            <div className='asked'>Number of Asked: {user.questions.length}</div>
-                            <div className='answered'>Number of Answered: {Object.keys(user.answers).length}</div>
+                            <div className='asked'>Question Asked: {user.questions.length}</div>
+                            <div className='answered'>Question Answered: {Object.keys(user.answers).length}</div>
                         </li>
                     ))}
                 </ul>
@@ -32,7 +32,6 @@ class LeaderBoard  extends Component {
 
 function mapStateToProps ({ users }) {
     return {
-        
         users: Object.keys(users).sort((a,b) => (users[b].questions.length + Object.keys(users[b].answers).length) - (users[a].questions.length + Object.keys(users[a].answers).length))
             .map((user) => users[user]),
     }
