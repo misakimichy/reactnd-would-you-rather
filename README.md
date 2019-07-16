@@ -4,8 +4,6 @@ This is the second project of React Nanodegree.
 
 The `_DATA.js` file is provided, which represents a fake database and methods that let us access the data. 'avatarURL' was not provided and I used avatar images from [flaticon.com](https://www.flaticon.com/).
 
-![alt screenshot of the login page](image/screenshot.png)
-
 
 ## About This App
 
@@ -14,10 +12,13 @@ This is a poll app that user can answer and create polls with two options.
 ### Login
 
 This app begins on a login page. You need to select a user from the list.
+![alt screenshot of the login page](image/screenshot.png)
 
 ### Home
 
 The main page shows the question list that the logged-in user hasn't answered yet. If you click a question card, you can answer the question. If you click the answered tab on top of the question list, you can view the result of the poll which the logged-in user has already answered.
+
+![alt screenshot of Home](image/screenshot_home.png)
 
 
 ### New Question
