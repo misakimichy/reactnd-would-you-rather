@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-class LeaderBoard extends Component {
-    render() {
-        const { users } = this.props;
-
+const LeaderBoard = props => {
         return (
             <div>
                 <h1 className='center'>Leader Board</h1>
                 <ul className='user-list'>
-                    {users.map(user => (
+                    {props.users.map(user => (
                         <li
                             className='user'
                             key={user.id}
@@ -27,7 +24,6 @@ class LeaderBoard extends Component {
                 </ul>
             </div>
         );
-    }
 }
 
 function mapStateToProps ({ users }) {
