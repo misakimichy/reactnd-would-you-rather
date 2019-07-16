@@ -101,7 +101,6 @@ class Question extends Component {
 }
 
 function mapStateToProps({ authedUser, questions, users }, props) {
-    console.log('this props: ', props);
     const { question_id } = props.match.params;
     const question = questions[question_id];
     const user = users[question.author];
@@ -110,7 +109,6 @@ function mapStateToProps({ authedUser, questions, users }, props) {
         answered = question.optionOne.votes.indexOf(authedUser) !== -1
         || question.optionTwo.votes.indexOf(authedUser) !== -1
     }
-    console.log('answered: ', answered);
 
     return {
         authedUser,
