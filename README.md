@@ -2,98 +2,56 @@
 
 This is the second project of React Nanodegree.
 
-The `_DATA.js` file is provided, which represents a fake database and methods that let us access the data. 'avatarURL' was not provided so I used avatar images from [flaticon.com](https://www.flaticon.com/).
+The `_DATA.js` file is provided, which represents a fake database and methods that let us access the data. 'avatarURL' was not provided and I used avatar images from [flaticon.com](https://www.flaticon.com/).
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+![alt screenshot of the login page](src/image/screenshot.png)
 
-## Data
 
-There are two types of objects stored in our database:
+## About This App
 
-* Users
-* Questions
+This is a poll app that user can answer and create polls with two options.
 
-### Users
+### Login
 
-Users include:
+This app begins on a login page. You need to select a user from the list.
 
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
+### Home
 
-### Questions
+The main page shows the question list that the logged-in user hasn't answered yet. If you click a question card, you can answer the question. If you click the answered tab on top of the question list, you can view the result of the poll which the logged-in user has already answered.
 
-Questions include:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
+### New Question
 
-### Voting Options
+You can post a new question from the New Question page.
 
-Voting options are attached to questions. They include:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
+### Leader Board
 
-Your code will talk to the database via 4 methods:
+This is a user ranking based on the sum of questions that the user asked and answered.
 
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
 
-1) `_getUsers()` Method
+### Sign Out
 
-*Description*: Get all of the existing users from the database.  
-*Return Value*: Object where the key is the user’s id and the value is the user object.
+When you click the 'Sign Out' on the top right, it'll take you to the login page.
 
-2) `_getQuestions()` Method
 
-*Description*: Get all of the existing questions from the database.  
-*Return Value*: Object where the key is the question’s id and the value is the question object.
 
-3) `_saveQuestion(question)` Method
+## Installation
 
-*Description*: Save the polling question in the database.  
-*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
+1. Clone the GitHub repo: `git clone https://github.com/misakimichy/React-Myread.git`
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| author | String | The id of the user who posted the question|
-| optionOneText| String | The text of the first option |
-| optionTwoText | String | The text of the second option |
+2. `$cd React-Myread`
 
-*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+3. `$npm install`
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id | String | The id of the question that was posted|
-| author | String | The id of the user who posted the question|
-| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-|timestamp|String | The time when the question was created|
+4. `$npm start`
+The will start the app in port :3000 on your local machine.
 
-4) `_saveQuestionAnswer(object)` Method
 
-*Description*: Save the answer to a particular polling question in the database.
-*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
+## Create React App
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| authedUser | String | The id of the user who answered the question|
-| qid | String | The id of the question that was answered|
-| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
 
 ## Contributing
 
