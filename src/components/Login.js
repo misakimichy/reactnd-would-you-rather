@@ -30,7 +30,7 @@ class Login extends Component {
         const { users } = this.props;
         const loginAvatar = 'https://image.flaticon.com/icons/svg/1107/1107472.svg';
 
-        const home = this.props.location.state.form || {home: {pathname:'/'}}
+        const home = this.props.location.state.from || {home: {pathname:'/'}}
         if(toHome) {
             return <Redirect to={home} />
         }
