@@ -27,6 +27,7 @@ class Login extends Component {
 
     render() {
         const { username, toHome } = this.state;
+        const { users } = this.props;
         const loginAvatar = 'https://image.flaticon.com/icons/svg/1107/1107472.svg';
 
         const home = this.props.location.state || {home: {pathname:'/'}}
@@ -44,8 +45,8 @@ class Login extends Component {
                 <h1 className='center'>Please select a user</h1>
                 <select value={username} onChange={this.handleUserSelect}>
                     <option>Username</option>
-                    {this.props.users.map(user => (
-                        <option key={user.id}>{user.name}</option>
+                    {users.map(user => (
+                        <option key={user.name}>{user.name}</option>
                     ))}
                 </select>
                 <button
