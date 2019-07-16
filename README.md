@@ -4,7 +4,7 @@ This is the second project of React Nanodegree.
 
 The `_DATA.js` file is provided, which represents a fake database and methods that let us access the data. 'avatarURL' was not provided and I used avatar images from [flaticon.com](https://www.flaticon.com/).
 
-![alt screenshot of the login page](src/image/screenshot.png)
+![alt screenshot of the login page](image/screenshot.png)
 
 
 ## About This App
