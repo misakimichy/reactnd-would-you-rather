@@ -232,7 +232,7 @@ label {
 
 /* New Question */
 .question {
-  width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
@@ -270,6 +270,7 @@ label {
 .user {
   border-bottom: 1px solid var(--black);
   border-radius: 5px;
+  height: 120px;
   width: 100%;
   display: grid;
   grid-template-rows: 40% 30% 30%;
@@ -285,6 +286,7 @@ label {
   grid-column: 1 / 2;
   display: flex;
   justify-self: center;
+  align-self: center;
 }
 
 .user-name {
