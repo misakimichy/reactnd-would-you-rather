@@ -20,7 +20,7 @@ class Nav extends Component {
 
     render() {
             const { toLogin } = this.state;
-            const { authedUser, user} = this.props;
+            const { user } = this.props;
 
             if(toLogin === true) {
                 return (<Redirect to='/login' />)

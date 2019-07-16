@@ -1,14 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from "react-redux-loading-bar";
 import { handleInitialData } from '../actions/shared';
+import PrivateRoute from '../utils/PrivateRoute';
 import Dashboard from './Dashboard';
 import LeaderBoard from './LeaderBoard';
 import Login from './Login';
 import NewQuestion from './NewQuestion';
 import Question from './Question';
-import PrivateRoute from '../utils/PrivateRoute';
+import NotFound from './NotFound';
 
 class App extends Component {
   componentDidMount() {
@@ -21,16 +22,14 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            {this.props.loaded === true
-              ? null
-              : <div>
+              <Switch>
                   <Route path='/login' component={Login} />
                   <PrivateRoute path='/' exact component={Dashboard} />
                   <PrivateRoute path='/questions/:question_id' component={Question} />
                   <PrivateRoute path='/add' component={NewQuestion} />
                   <PrivateRoute path='/leaderboard' component={LeaderBoard} />
-              </div>
-            }
+                  <Route component={NotFound} />
+              </Switch>
         </div>
         </Fragment>
       </Router>

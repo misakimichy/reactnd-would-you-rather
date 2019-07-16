@@ -27,13 +27,14 @@ class Question extends Component {
 
     render() {
         const { question, user } = this.props;
+
+        if(question === null) {
+            return <Redirect to='/not-found' from='*' />
+        }
+        
         const { answered, selectOption} = this.state;
         const { optionOne, optionTwo } = question;
 
-        if(question === null) {
-            return <Redirect to='/NotFound' from='*' />
-        }
-        
         return (
             <Fragment>
                 {answered &&
@@ -109,6 +110,7 @@ function mapStateToProps({ authedUser, questions, users }, props) {
         answered = question.optionOne.votes.indexOf(authedUser) !== -1
         || question.optionTwo.votes.indexOf(authedUser) !== -1
     }
+
 
     return {
         authedUser,
