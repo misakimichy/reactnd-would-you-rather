@@ -13,11 +13,9 @@ class NewQuestion extends Component {
     handleSelectOption = (event, optionIndex) => {
         const text = event.target.value;
 
-        this.setState(previousState => {
-            return optionIndex === 1
-                ? {...previousState, 'optionOne': text}
-                : {...previousState, 'optionTwo': text}
-        });
+        this.setState({
+            [optionIndex === 1 ? 'optionOne' : 'optionTwo'] : text
+        })
     }
 
     handleSubmit = event => {
