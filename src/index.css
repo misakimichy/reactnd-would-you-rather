@@ -168,6 +168,10 @@ select {
   display: flex;
 }
 
+.question-card {
+  padding: 10px;
+}
+
 .question-card-avatar {
   height: 50px;
   width: 50px;

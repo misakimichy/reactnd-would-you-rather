@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class LeaderBoard  extends Component {
+class LeaderBoard extends Component {
     render() {
         const { users } = this.props;
 
@@ -9,7 +9,7 @@ class LeaderBoard  extends Component {
             <div>
                 <h1 className='center'>Leader Board</h1>
                 <ul className='user-list'>
-                    {users.map((user, index) => (
+                    {users.map(user => (
                         <li
                             className='user'
                             key={user.id}

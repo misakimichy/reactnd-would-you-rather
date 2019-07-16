@@ -38,7 +38,7 @@ class Question extends Component {
             <Fragment>
                 {answered &&
                     <div>
-                        <h1 className='center'>Question</h1>
+                        <h1 className='center'>Result</h1>
                         <div className='question-card'>
                             <div className='author-info'>
                                 <img
