@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import QuestionDetail from './QuestionDetail';
 import { handleAnswerQuestion } from '../actions/questions';
+import NotFound from './NotFound';
 
 class Question extends Component {
     state = {
@@ -27,12 +28,10 @@ class Question extends Component {
 
     render() {
         const { question, user } = this.props;
-
-        if(question === null) {
-            return <Redirect to='/not-found' from='*' />
+        if(!question) {
+            return <Route path='*' component={NotFound} />
         }
-        
-        const { answered, selectOption} = this.state;
+        const { answered, selectOption } = this.state;
         const { optionOne, optionTwo } = question;
 
         return (
@@ -104,13 +103,12 @@ class Question extends Component {
 function mapStateToProps({ authedUser, questions, users }, props) {
     const { question_id } = props.match.params;
     const question = questions[question_id];
-    const user = users[question.author];
+    const user = users[authedUser];
     let answered = false;
     if (question) {
         answered = question.optionOne.votes.indexOf(authedUser) !== -1
         || question.optionTwo.votes.indexOf(authedUser) !== -1
     }
-
 
     return {
         authedUser,

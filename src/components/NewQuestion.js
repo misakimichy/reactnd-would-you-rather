@@ -25,10 +25,9 @@ class NewQuestion extends Component {
         const { dispatch, id } = this.props;
 
         dispatch(handleAddQuestion(optionOne, optionTwo));
-        this.setState(previousState => ({
-            ...previousState,
-            toHome: id ? false : true,
-        }))
+        this.setState({
+            toHome: !id,
+        })
     }
 
 
