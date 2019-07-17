@@ -27,8 +27,8 @@ class Question extends Component {
     }
 
     render() {
-        const { question, user } = this.props;
-        if(!question) {
+        const { question, user, questionNotExist } = this.props;
+        if(questionNotExist) {
             return <Route path='*' component={NotFound} />
         }
         const { answered, selectOption } = this.state;
@@ -103,6 +103,10 @@ class Question extends Component {
 function mapStateToProps({ authedUser, questions, users }, props) {
     const { question_id } = props.match.params;
     const question = questions[question_id];
+    let questionNotExist = false;
+    if(!question){
+        questionNotExist = true;
+    }
     const user = users[authedUser];
     let answered = false;
     if (question) {
@@ -114,6 +118,7 @@ function mapStateToProps({ authedUser, questions, users }, props) {
         authedUser,
         question,
         user,
+        questionNotExist,
         answered,
     };
 }
