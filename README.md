@@ -39,7 +39,7 @@ When you click the 'Sign Out' on the top right, it'll take you to the login page
 
 ## Installation
 
-1. Clone the GitHub repo: `git clone https://github.com/misakimichy/React-Myread.git`
+1. Clone the GitHub repo: `git clone https://github.com/misakimichy/react-would-you-rather.git`
 
 2. `$cd React-Myread`
 
