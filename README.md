@@ -41,7 +41,7 @@ When you click the 'Sign Out' on the top right, it'll take you to the login page
 
 1. Clone the GitHub repo: `git clone https://github.com/misakimichy/react-would-you-rather.git`
 
-2. `$cd React-Myread`
+2. `$cd react-would-you-rather`
 
 3. `$npm install`
 
