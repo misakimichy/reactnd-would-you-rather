@@ -6,7 +6,6 @@
   --green-hover: #32e2d2;
   --red: #e71d36;
   --yellow: #ff9f1c;
-
 }
 
 body {
@@ -15,7 +14,8 @@ body {
   background-color: var(--white);
 }
 
-a, li {
+a,
+li {
   color: inherit;
   text-decoration: none;
 }
@@ -38,7 +38,7 @@ li {
   flex-direction: column;
 }
 
-.login-avatar{
+.login-avatar {
   margin: 0 auto;
   width: 100%;
 }
@@ -196,7 +196,7 @@ select {
   padding: 10px 0 0 20px;
 }
 
-input[type=radio] {
+input[type='radio'] {
   vertical-align: text-top;
   padding: 10px;
 }
