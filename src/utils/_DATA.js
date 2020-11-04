@@ -117,23 +117,23 @@ let questions = {
   },
 };
 
-function generateUID() {
+const generateUID = () => {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
+};
 
-export function _getUsers() {
+export const _getUsers = () => {
   return new Promise((res, rej) => {
     setTimeout(() => res({ ...users }), 1000);
   });
-}
+};
 
-export function _getQuestions() {
+export const _getQuestions = () => {
   return new Promise((res, rej) => {
     setTimeout(() => res({ ...questions }), 1000);
   });
-}
+};
 
-function formatQuestion({ optionOneText, optionTwoText, author }) {
+const formatQuestion = ({ optionOneText, optionTwoText, author }) => {
   return {
     id: generateUID(),
     timestamp: Date.now(),
@@ -147,9 +147,9 @@ function formatQuestion({ optionOneText, optionTwoText, author }) {
       text: optionTwoText,
     },
   };
-}
+};
 
-export function _saveQuestion(question) {
+export const _saveQuestion = (question) => {
   return new Promise((res, rej) => {
     const authedUser = question.author;
     const formattedQuestion = formatQuestion(question);
@@ -174,9 +174,9 @@ export function _saveQuestion(question) {
       });
     }, 1000);
   });
-}
+};
 
-export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+export const _saveQuestionAnswer = ({ authedUser, qid, answer }) => {
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {
@@ -207,4 +207,4 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
       });
     }, 500);
   });
-}
+};

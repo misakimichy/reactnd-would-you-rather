@@ -8,29 +8,32 @@ import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Nav from '../components/Nav';
 
-export const PrivateRoute = ({ component: Component, isAuthed, ...rest }) => (
+export const PrivateRoute = ({ component: Component, isAuthed, ...rest }) => {
   /* eslint-disable */
-  <Route
-    {...rest}
-    render={(props) => {
-      return isAuthed ? (
-        <>
-          <Nav />
-          <Component {...props} />
-        </>
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location },
-          }}
-        />
-      );
-    }}
-  />
-);
+  console.log('isAuthed', isAuthed);
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        return isAuthed ? (
+          <>
+            <Nav />
+            <Component {...props} />
+          </>
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: props.location },
+            }}
+          />
+        );
+      }}
+    />
+  );
+};
 
-function mapStateToProps({ authedUser }) {
+const mapStateToProps = ({ authedUser }) => {
   const isEmpty = (obj) => {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) return false;
@@ -41,6 +44,6 @@ function mapStateToProps({ authedUser }) {
   return {
     isAuthed: !isEmpty(authedUser),
   };
-}
+};
 
 export default connect(mapStateToProps)(PrivateRoute);

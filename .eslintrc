@@ -28,7 +28,8 @@
     "no-console": 1,
     "react/default-props-match-prop-types": 0,
     "prefer-promise-reject-errors": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": 2
   },
   "env": {
     "browser": true,

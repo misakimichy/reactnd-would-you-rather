@@ -3,7 +3,7 @@ import { receiveQuestions } from './questions';
 import { receiveUsers } from './users';
 import { getInitialData } from '../utils/api';
 
-export default function handleInitialData() {
+const handleInitialData = () => {
   return (dispatch) => {
     dispatch(showLoading());
 
@@ -13,4 +13,6 @@ export default function handleInitialData() {
       dispatch(hideLoading());
     });
   };
-}
+};
+
+export default handleInitialData;

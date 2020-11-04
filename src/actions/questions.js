@@ -6,30 +6,30 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER';
 
-function addQuestion(question) {
+const addQuestion = (question) => {
   return {
     type: ADD_QUESTION,
     question,
   };
-}
+};
 
-export function receiveQuestions(questions) {
+export const receiveQuestions = (questions) => {
   return {
     type: RECEIVE_QUESTIONS,
     questions,
   };
-}
+};
 
-export function addQuestionAnswer(authedUser, qid, answer) {
+export const addQuestionAnswer = (authedUser, qid, answer) => {
   return {
     type: ADD_QUESTION_ANSWER,
     authedUser,
     qid,
     answer,
   };
-}
+};
 
-export function handleAddQuestion(optionOneText, optionTwoText) {
+export const handleAddQuestion = (optionOneText, optionTwoText) => {
   return (dispatch, getState) => {
     const { authedUser } = getState();
     dispatch(showLoading());
@@ -44,9 +44,9 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
       dispatch(hideLoading());
     });
   };
-}
+};
 
-export function handleAnswerQuestion(authedUser, qid, answer) {
+export const handleAnswerQuestion = (authedUser, qid, answer) => {
   return (dispatch) => {
     const answerInfo = {
       authedUser,
@@ -60,4 +60,4 @@ export function handleAnswerQuestion(authedUser, qid, answer) {
       dispatch(receiveQuestions(res.questions));
     });
   };
-}
+};

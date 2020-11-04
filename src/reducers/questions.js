@@ -1,6 +1,6 @@
 import { RECEIVE_QUESTIONS, ADD_QUESTION, ADD_QUESTION_ANSWER } from '../actions/questions';
 
-export default function questions(state = {}, action) {
+const questions = (state = {}, action) => {
   switch (action.type) {
     case ADD_QUESTION:
       return {
@@ -28,4 +28,6 @@ export default function questions(state = {}, action) {
     default:
       return state;
   }
-}
+};
+
+export default questions;
