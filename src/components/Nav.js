@@ -31,43 +31,38 @@ class Nav extends Component {
 
     return (
       <nav className="navbar">
-        <ul className="navbar-left">
-          <li>
-            <NavLink to="/" exact activeClassName="active">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/add" activeClassName="active">
-              New Question
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/leaderboard" activeClassName="active">
-              Leader Board
-            </NavLink>
-          </li>
-        </ul>
-        <ul className="navbar-right">
-          <li> Hello {user} !</li>
-          <li>
-            <NavLink to="#" onClick={this.handleSignOut}>
-              Sign Out
-            </NavLink>
-          </li>
-        </ul>
+        <div className="navbar-left">
+          <NavLink to="/" exact activeClassName="active">
+            Home
+          </NavLink>
+
+          <NavLink to="/add" activeClassName="active">
+            New Question
+          </NavLink>
+
+          <NavLink to="/leaderboard" activeClassName="active">
+            Leader Board
+          </NavLink>
+        </div>
+        <div className="navbar-right">
+          <p> Hello {user} !</p>
+
+          <NavLink to="#" onClick={this.handleSignOut}>
+            Sign Out
+          </NavLink>
+        </div>
       </nav>
     );
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
+const mapStateToProps = ({ authedUser, users }) => {
   const user = users[authedUser].name;
 
   return {
     authedUser,
     user,
   };
-}
+};
 
 export default connect(mapStateToProps)(Nav);

@@ -2,25 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const LeaderBoard = (props) => {
+  const { users } = props;
   return (
     <div>
       <h1 className="center">Leader Board</h1>
       <ul className="user-list">
-        {/* eslint-disable */}
-        {props.users.map((user) => (
-          <li className="user" key={user.id}>
-            <img className="avatar" src={user.avatarURL} alt={`Avatar of ${user.id}`} />
-            <span className="user-name">{user.name}</span>
-            <div className="asked">Question Asked: {user.questions.length}</div>
-            <div className="answered">Question Answered: {Object.keys(user.answers).length}</div>
-          </li>
-        ))}
+        {users.map((user) => {
+          const { id, avatarURL, questions, answers, name } = user;
+          return (
+            <li className="user" key={id}>
+              <img className="avatar" src={avatarURL} alt={`Avatar of ${id}`} />
+              <span className="user-name">{name}</span>
+              <div className="asked">Question Asked: {questions.length}</div>
+              <div className="answered">Question Answered: {Object.keys(answers).length}</div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 };
 
-function mapStateToProps({ users }) {
+const mapStateToProps = ({ users }) => {
   return {
     users: Object.values(users).sort(
       (a, b) =>
@@ -29,6 +32,6 @@ function mapStateToProps({ users }) {
         (a.questions.length + Object.keys(a.answers).length)
     ),
   };
-}
+};
 
 export default connect(mapStateToProps)(LeaderBoard);

@@ -39,7 +39,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ questions, users }) {
+const mapStateToProps = ({ questions, users }) => {
   const isEmpty = (obj) => {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) return false;
@@ -49,6 +49,6 @@ function mapStateToProps({ questions, users }) {
   return {
     loaded: isEmpty(questions) || isEmpty(users),
   };
-}
+};
 
 export default connect(mapStateToProps)(App);

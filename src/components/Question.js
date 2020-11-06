@@ -101,7 +101,7 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }, props) {
+const mapStateToProps = ({ authedUser, questions, users }, props) => {
   /* eslint-disable */
   const { question_id } = props.match.params;
   const question = questions[question_id];
@@ -124,6 +124,6 @@ function mapStateToProps({ authedUser, questions, users }, props) {
     questionNotExist,
     answered,
   };
-}
+};
 
 export default connect(mapStateToProps)(Question);

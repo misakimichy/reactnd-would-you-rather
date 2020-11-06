@@ -9,8 +9,6 @@ import { connect } from 'react-redux';
 import Nav from '../components/Nav';
 
 export const PrivateRoute = ({ component: Component, isAuthed, ...rest }) => {
-  /* eslint-disable */
-  console.log('isAuthed', isAuthed);
   return (
     <Route
       {...rest}

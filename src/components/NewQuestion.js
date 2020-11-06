@@ -77,11 +77,11 @@ class NewQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
+const mapStateToProps = ({ authedUser, users }) => {
   return {
     authedUser,
     users,
   };
-}
+};
 
 export default connect(mapStateToProps)(NewQuestion);

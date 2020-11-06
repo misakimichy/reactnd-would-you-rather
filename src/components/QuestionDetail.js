@@ -38,7 +38,7 @@ class QuestionDetail extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }, { questionId, optionName }) {
+const mapStateToProps = ({ authedUser, questions, users }, { questionId, optionName }) => {
   const question = questions[questionId];
   const currentUser = users[authedUser];
   const option = question[optionName];
@@ -52,6 +52,6 @@ function mapStateToProps({ authedUser, questions, users }, { questionId, optionN
     showResult: Object.keys(currentUser.answers).includes(questionId),
     percentage: ((option.votes.length / (optionOneVotes + optionTwoVotes)) * 100).toFixed(2),
   };
-}
+};
 
 export default connect(mapStateToProps)(QuestionDetail);

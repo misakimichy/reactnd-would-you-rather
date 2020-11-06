@@ -4,13 +4,10 @@ import { Redirect } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      toHome: false,
-    };
-  }
+  state = {
+    username: '',
+    toHome: false,
+  };
 
   handleUserSelect = (event) => {
     const username = event.target.value;
@@ -30,17 +27,16 @@ class Login extends Component {
 
   render() {
     const { username, toHome } = this.state;
-    const { users, location } = this.props;
+    const { users } = this.props;
     const loginAvatar = 'https://image.flaticon.com/icons/svg/1107/1107472.svg';
 
-    const home = location.state.from || { home: { pathname: '/' } };
     if (toHome) {
-      return <Redirect to={home} />;
+      return <Redirect to="/" />;
     }
 
     return (
       <form className="login-container" onSubmit={this.handleLogin}>
-        <img className="login-avatar" src={loginAvatar} alt="Choose user" />
+        <img className="login-avatar" src={loginAvatar} alt={`Choose user`} />
         <h1 className="center">Please select a user</h1>
         <select value={username} onChange={this.handleUserSelect}>
           <option>Username</option>
@@ -56,7 +52,7 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users, authedUser }) {
+const mapStateToProps = ({ users, authedUser }) => {
   return {
     users: Object.values(users).map((user) => {
       return {
@@ -65,6 +61,6 @@ function mapStateToProps({ users, authedUser }) {
     }),
     username: authedUser,
   };
-}
+};
 
 export default connect(mapStateToProps)(Login);

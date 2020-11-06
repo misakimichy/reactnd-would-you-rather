@@ -74,7 +74,7 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions }) {
+const mapStateToProps = ({ authedUser, questions }) => {
   // if neither of option votes includes the selected username, those questions are going to be unanswered.
   // if either of option votes includes the selected username, those questions are going to be answered.
   return {
@@ -95,6 +95,6 @@ function mapStateToProps({ authedUser, questions }) {
       })
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
   };
-}
+};
 
 export default connect(mapStateToProps)(Dashboard);
