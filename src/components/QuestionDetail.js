@@ -1,31 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-class QuestionDetail extends Component {
-  handleClick = (event) => {
-    event.preventDefault();
-    const { onClick, optionName } = this.props;
+const QuestionDetail = (props) => {
+  // destruct props
+  const { option, showResult, isVoted, percentage, optionName, onClick } = props;
+  const { text, votes } = option;
+
+  const handleClick = (e) => {
+    e.preventDefault();
     onClick(optionName);
   };
 
-  render() {
-    const { option, showResult, isVoted, percentage } = this.props;
-    const { text, votes } = option;
-
-    return showResult === false ? (
-      /* eslint-disable */
-      <Link to="#">
-        <button type="button" className={isVoted ? 'selected' : ''} onClick={this.handleClick}>
-          <h1 className="detail-option-one">{text}</h1>
-          {showResult === true && (
-            <div className="result">
-              Number of Votes: {votes.length} ({percentage}%)
-            </div>
-          )}
-        </button>
-      </Link>
-    ) : (
+  return showResult === false ? (
+    <Link to="#" onClick={(e) => handleClick}>
       <div className={isVoted ? 'selected' : ''}>
         <h1 className="detail-option-one">{text}</h1>
         {showResult === true && (
@@ -34,9 +22,18 @@ class QuestionDetail extends Component {
           </div>
         )}
       </div>
-    );
-  }
-}
+    </Link>
+  ) : (
+    <div className={isVoted ? 'selected' : ''}>
+      <h1 className="detail-option-one">{text}</h1>
+      {showResult === true && (
+        <div className="result">
+          Number of Votes: {votes.length} ({percentage}%)
+        </div>
+      )}
+    </div>
+  );
+};
 
 const mapStateToProps = ({ authedUser, questions, users }, { questionId, optionName }) => {
   const question = questions[questionId];

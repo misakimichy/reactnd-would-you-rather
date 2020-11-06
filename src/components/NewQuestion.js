@@ -1,81 +1,62 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/questions';
 
-class NewQuestion extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      optionOne: '',
-      optionTwo: '',
-      toHome: false,
-    };
-  }
+const NewQuestion = (props) => {
+  const { dispatch, id } = props;
+  const [optionOne, setOptionOne] = useState('');
+  const [optionTwo, setOptionTwo] = useState('');
+  const [toHome, setToHome] = useState(false);
 
-  handleSelectOption = (event, optionIndex) => {
-    const text = event.target.value;
+  const handleSelectOption = (e, optionIndex) => {
+    const text = e.target.value;
 
-    this.setState({
-      [optionIndex === 1 ? 'optionOne' : 'optionTwo']: text,
-    });
+    optionIndex === 1 ? setOptionOne(text) : setOptionTwo(text);
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const { optionOne, optionTwo } = this.state;
-    const { dispatch, id } = this.props;
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     dispatch(handleAddQuestion(optionOne, optionTwo));
-    this.setState({
-      toHome: !id,
-    });
+    setToHome(!id);
   };
 
-  render() {
-    const { optionOne, optionTwo, toHome } = this.state;
-
-    if (toHome) {
-      return <Redirect to="/" />;
-    }
-
-    return (
-      <div>
-        <h1 className="center">New Question</h1>
-        <div className="question">
-          <h2>Would You Rather...</h2>
-          <form onSubmit={this.handleSubmit}>
-            <div className="option">
-              <input
-                className="option"
-                value={optionOne}
-                placeholder="First option comes here."
-                onChange={(event) => this.handleSelectOption(event, 1)}
-              />
-            </div>
-            <span>or</span>
-            <div className="options">
-              <input
-                className="option"
-                value={optionTwo}
-                placeholder="Second option comes here."
-                onChange={(event) => this.handleSelectOption(event, 2)}
-              />
-            </div>
-            <button
-              className="button"
-              type="submit"
-              disabled={optionOne === '' || optionTwo === ''}
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    );
+  if (toHome) {
+    return <Redirect to="/" />;
   }
-}
+
+  return (
+    <div>
+      <h1 className="center">New Question</h1>
+      <div className="question">
+        <h2>Would You Rather...</h2>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="option">
+            <input
+              className="option"
+              value={optionOne}
+              placeholder="First option comes here."
+              onChange={(e) => handleSelectOption(e, 1)}
+            />
+          </div>
+          <span>or</span>
+          <div className="options">
+            <input
+              className="option"
+              value={optionTwo}
+              placeholder="Second option comes here."
+              onChange={(e) => handleSelectOption(e, 2)}
+            />
+          </div>
+          <button className="button" type="submit" disabled={optionOne === '' || optionTwo === ''}>
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 const mapStateToProps = ({ authedUser, users }) => {
   return {

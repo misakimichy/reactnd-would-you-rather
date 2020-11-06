@@ -1,55 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 import QuestionList from './QuestionList';
 
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: '1',
-    };
-  }
+const Dashboard = (props) => {
+  // destruct props
+  const { unansweredQIds, answeredQIds } = props;
 
-  handleTabChange = (tab) => {
-    const { activeTab } = this.state;
+  const [activeTab, setActiveTab] = useState('1');
+
+  const handleTabChange = (tab) => {
     if (activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
+      setActiveTab(tab);
     }
   };
 
-  render() {
-    const { unansweredQIds, answeredQIds } = this.props;
-    const { activeTab } = this.state;
+  /* 
 
-    return (
-      <div>
-        {/* reactstrap nav: https://reactstrap.github.io/components/navs/ */}
-        <Nav tabs>
-          <div className="tabs">
-            <NavItem>
-              <NavLink
-                className={classnames({ active: activeTab === '1' })}
-                onClick={() => this.handleTabChange('1')}
-              >
-                Unanswered
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: activeTab === '2' })}
-                onClick={() => this.handleTabChange('2')}
-              >
-                See Answered
-              </NavLink>
-            </NavItem>
-          </div>
-        </Nav>
-        {/* reactstarp tabs: https://reactstrap.github.io/components/tabs/ */}
-        <TabContent activeTab={activeTab}>
+  Reference: 
+  reactstrap nav: https://reactstrap.github.io/components/navs/
+  reactstarp tabs: https://reactstrap.github.io/components/tabs/
+  
+  */
+  return (
+    <div>
+      <Nav tabs>
+        <div className="tabs">
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '1' })}
+              onClick={() => handleTabChange('1')}
+            >
+              Unanswered
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '2' })}
+              onClick={() => handleTabChange('2')}
+            >
+              See Answered
+            </NavLink>
+          </NavItem>
+        </div>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        {activeTab === '1' ? (
           <TabPane tabId="1">
             <ul className="questions">
               {unansweredQIds.map((questionId) => (
@@ -59,6 +56,7 @@ class Dashboard extends Component {
               ))}
             </ul>
           </TabPane>
+        ) : (
           <TabPane tabId="2">
             <ul className="questions">
               {answeredQIds.map((questionId) => (
@@ -68,20 +66,19 @@ class Dashboard extends Component {
               ))}
             </ul>
           </TabPane>
-        </TabContent>
-      </div>
-    );
-  }
-}
+        )}
+      </TabContent>
+    </div>
+  );
+};
 
-const mapStateToProps = ({ authedUser, questions }) => {
+function mapStateToProps({ authedUser, questions }) {
   // if neither of option votes includes the selected username, those questions are going to be unanswered.
   // if either of option votes includes the selected username, those questions are going to be answered.
   return {
-    authedUser,
+    authedUser: authedUser,
     answeredQIds: Object.keys(questions)
       .filter((question) => {
-        /* eslint-disable */
         let optionOneSelected = questions[question].optionOne.votes.indexOf(authedUser) !== -1;
         let optionTwoSelected = questions[question].optionTwo.votes.indexOf(authedUser) !== -1;
         return optionOneSelected || optionTwoSelected;
@@ -95,6 +92,6 @@ const mapStateToProps = ({ authedUser, questions }) => {
       })
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
   };
-};
+}
 
 export default connect(mapStateToProps)(Dashboard);

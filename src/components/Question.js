@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import QuestionDetail from './QuestionDetail';
@@ -6,21 +6,18 @@ import { handleAnswerQuestion } from '../actions/questions';
 import NotFound from './NotFound';
 
 class Question extends Component {
-  constructor(props) {
-    super(props);
-    const { answered } = this.props;
-    this.state = {
-      qAnswered: answered,
-      selectOption: '',
-    };
-  }
+  state = {
+    answered: this.props.answered,
+    selectOption: '',
+  };
 
-  handleAnswer = () => {
-    const { dispatch, authedUser, question } = this.props;
-    const { selectOption } = this.state;
-    dispatch(handleAnswerQuestion(authedUser, question.id, selectOption));
+  handleAnswer = (answer) => {
+    const { dispatch } = this.props;
+    dispatch(
+      handleAnswerQuestion(this.props.authedUser, this.props.question.id, this.state.selectOption)
+    );
     this.setState({
-      qAnswered: true,
+      answered: true,
     });
   };
 
@@ -36,12 +33,12 @@ class Question extends Component {
     if (questionNotExist) {
       return <Route path="*" component={NotFound} />;
     }
-    const { qAnswered, selectOption } = this.state;
+    const { answered, selectOption } = this.state;
     const { optionOne, optionTwo } = question;
 
     return (
-      <>
-        {qAnswered && (
+      <Fragment>
+        {answered && (
           <div>
             <h1 className="center">Result</h1>
             <div className="question-card">
@@ -69,7 +66,7 @@ class Question extends Component {
             </div>
           </div>
         )}
-        {!qAnswered && (
+        {!answered && (
           <form onSubmit={this.handleAnswer}>
             <h1 className="center">Would you rather</h1>
             <div className="poll">
@@ -96,13 +93,12 @@ class Question extends Component {
             </div>
           </form>
         )}
-      </>
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
-  /* eslint-disable */
   const { question_id } = props.match.params;
   const question = questions[question_id];
   let questionNotExist = false;

@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const QuestionList = (props) => {
-  const { question, user } = props;
-  const { id, optionOne, optionTwo, author } = question;
+  // destruct props
+  const { user, question } = props;
   const { avatarURL, name } = user;
+  const { id, author, optionOne, optionTwo } = question;
+
   return (
     <Link to={`/questions/${id}`}>
       <div className="question-list">

@@ -31,7 +31,7 @@ li {
 /* Login screen */
 .login-container {
   width: 60%;
-  margin: 200px auto;
+  margin: 50px auto;
   border: 1px solid var(--black);
   padding: 10px;
   display: flex;

@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 
 const LeaderBoard = (props) => {
   const { users } = props;
+
   return (
     <div>
       <h1 className="center">Leader Board</h1>
       <ul className="user-list">
         {users.map((user) => {
-          const { id, avatarURL, questions, answers, name } = user;
+          const { id, avatarURL, name, questions, answers } = user;
           return (
             <li className="user" key={id}>
               <img className="avatar" src={avatarURL} alt={`Avatar of ${id}`} />
