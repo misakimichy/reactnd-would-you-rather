@@ -7,19 +7,21 @@ const LeaderBoard = (props) => {
   return (
     <section>
       <h1 className="center">Leader Board</h1>
-      <ul className="user-list">
+      <div className="questions">
         {users.map((user) => {
           const { id, avatarURL, name, questions, answers } = user;
           return (
-            <li className="user" key={id}>
+            <div className="question-list" key={id}>
               <img className="avatar" src={avatarURL} alt={`Avatar of ${id}`} />
-              <span className="user-name">{name}</span>
-              <div className="asked">Question Asked: {questions.length}</div>
-              <div className="answered">Question Answered: {Object.keys(answers).length}</div>
-            </li>
+              <div classNam="card-right">
+                <p style={{ marginTop: '0', marginBottom: '8px', fontSize: '24px' }}>{name}</p>
+                <p className="options">Question Asked: {questions.length}</p>
+                <p className="options">Question Answered: {Object.keys(answers).length}</p>
+              </div>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </section>
   );
 };

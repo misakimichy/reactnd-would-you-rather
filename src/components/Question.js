@@ -30,7 +30,7 @@ const Question = (props) => {
 
   return (
     <section>
-      {answeredStatus && (
+      {answeredStatus ? (
         <div>
           <h1 className="center">Result</h1>
           <div className="question-card">
@@ -45,30 +45,33 @@ const Question = (props) => {
             </div>
           </div>
         </div>
-      )}
-      {!answeredStatus && (
+      ) : (
         <form onSubmit={handleAnswer}>
           <h1 className="center">Would you rather</h1>
           <div className="poll">
-            <input
-              type="radio"
-              value="optionOne"
-              id="radio1"
-              checked={selectOption === 'optionOne'}
-              onChange={(e) => handleSelectOption(e)}
-            />
-            <label htmlFor="radio1">{optionOne.text}</label>
-            <div>or</div>
-            <input
-              type="radio"
-              value="optionTwo"
-              id="radio2"
-              checked={selectOption === 'optionTwo'}
-              onChange={(e) => handleSelectOption(e)}
-            />
-            <label htmlFor="radio2">{optionTwo.text}</label>
+            <label htmlFor="radio1">
+              <input
+                type="radio"
+                value="optionOne"
+                id="radio1"
+                checked={selectOption === 'optionOne'}
+                onChange={(e) => handleSelectOption(e)}
+              />
+              {optionOne.text}
+            </label>
+            <span>or</span>
+            <label htmlFor="radio2">
+              <input
+                type="radio"
+                value="optionTwo"
+                id="radio2"
+                checked={selectOption === 'optionTwo'}
+                onChange={(e) => handleSelectOption(e)}
+              />
+              {optionTwo.text}
+            </label>
             <button className="button" type="submit" disabled={selectOption === ''}>
-              Vote
+              vote
             </button>
           </div>
         </form>

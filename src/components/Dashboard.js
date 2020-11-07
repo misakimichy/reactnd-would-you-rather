@@ -18,21 +18,20 @@ const Dashboard = (props) => {
 
   return (
     <main>
-      <div tabs>
-        <div className="tabs">
-          <Link className={classnames({ active: activeTab === '1' })}>
-            <button type="button" className="button" onClick={() => handleTabChange('1')}>
-              Unanswered
-            </button>
-          </Link>
+      <div className="tabs">
+        <Link className={classnames({ active: activeTab === '1' })}>
+          <button type="button" className="button" onClick={() => handleTabChange('1')}>
+            Unanswered
+          </button>
+        </Link>
 
-          <Link className={classnames({ active: activeTab === '2' })}>
-            <button type="button" className="button" onClick={() => handleTabChange('2')}>
-              See Answered
-            </button>
-          </Link>
-        </div>
+        <Link className={classnames({ active: activeTab === '2' })}>
+          <button type="button" className="button" onClick={() => handleTabChange('2')}>
+            See Answered
+          </button>
+        </Link>
       </div>
+
       {activeTab === '1' ? (
         <div className="questions">
           {unansweredQIds.map((questionId) => (
@@ -51,8 +50,8 @@ const Dashboard = (props) => {
 };
 
 function mapStateToProps({ authedUser, questions }) {
-  // if neither of option votes includes the selected username, those questions are going to be unanswered.
-  // if either of option votes includes the selected username, those questions are going to be answered.
+  // both votes don't include username -> unanswered
+  // either of them includes username -> answered
   return {
     authedUser: authedUser,
     answeredQIds: Object.keys(questions)

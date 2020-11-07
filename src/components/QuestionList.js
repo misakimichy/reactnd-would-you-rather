@@ -12,10 +12,13 @@ const QuestionList = (props) => {
     <Link to={`/questions/${id}`}>
       <div className="question-list">
         <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
-        <span className="username">{name}</span>
-        <div className="option-one">{optionOne.text}</div>
-        <div id="or">or</div>
-        <div className="option-two">{optionTwo.text}</div>
+
+        <div className="card-right">
+          <p style={{ marginTop: '0', marginBottom: '8px', fontSize: '24px' }}>{name}</p>
+          <p className="options">{optionOne.text}</p>
+          <span>or</span>
+          <p className="options">{optionTwo.text}</p>
+        </div>
       </div>
     </Link>
   );

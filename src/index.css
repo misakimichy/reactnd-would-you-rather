@@ -28,11 +28,16 @@ li {
   list-style-type: none;
 }
 
+button:focus {
+  outline: none;
+}
+
 /* Login screen */
 .login-container {
   width: 60%;
   margin: 50px auto;
   border: 1px solid var(--black);
+  border-radius: 3px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -40,7 +45,7 @@ li {
 
 .login-avatar {
   margin: 0 auto;
-  width: 100%;
+  width: 80%;
 }
 
 select {
@@ -58,14 +63,15 @@ select {
 }
 
 .button {
+  display: block;
+  background-color: var(--green);
+  border-radius: 5px;
   font-size: 16px;
+  color: var(--black);
+  cursor: pointer;
   width: 200px;
   height: 40px;
   margin: 10px auto;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: var(--green);
-  color: var(--black);
 }
 
 .button:hover {
@@ -79,6 +85,9 @@ select {
 /* Dashboard */
 .tabs {
   display: flex;
+  justify-content: space-evenly;
+
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -102,66 +111,48 @@ select {
   background-color: var(--green-hover);
 }
 
+/* Question List */
 .questions {
-  position: relative;
-  top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Question List */
 .question-list {
-  display: grid;
-  grid-template-rows: 35% 25% 15% 25%;
-  grid-template-columns: 30% 70%;
-  width: 100%;
-  max-width: 500px;
-  height: 120px;
+  display: flex;
+  align-items: center;
+
   border: 1px solid var(--black);
   border-radius: 5px;
-  margin: 0 auto;
+
+  width: 500px;
+  height: 120px;
+  margin-bottom: 16px;
+  padding: 8px;
 }
 
-.question-list .avatar {
-  grid-row: 1 / 5;
-  grid-column: 1 / 2;
+.avatar {
+  margin-right: 16px;
+}
+
+.card-right {
   display: flex;
-  justify-self: center;
-  align-self: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.username {
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.option-one {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
-}
-
-#or {
-  grid-row: 3 / 4;
-  grid-column: 2 / 3;
-}
-
-.option-two {
-  grid-row: 4 / 5;
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
+.options {
+  font-size: 18px;
+  margin: 0;
 }
 
 /* Question - answered */
 .question-card,
 .poll {
   max-width: 500px;
-  margin: 0 auto;
   border: 1px solid var(--black);
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 .author-info {
@@ -192,7 +183,8 @@ select {
 
 /* Question - unanswered */
 .poll {
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   padding: 10px 0 0 20px;
 }
 
@@ -202,8 +194,10 @@ input[type='radio'] {
 }
 
 label {
-  margin-left: 30px;
+  display: flex;
+  align-items: center;
   font-size: 24px;
+  margin-left: 30px;
   padding: 10px;
 }
 
@@ -264,68 +258,10 @@ label {
   width: 100%;
 }
 
-.options {
-  display: flex;
-  flex-direction: column;
-}
-
 .option {
   width: 100%;
   height: 30px;
   font-size: 16px;
   resize: none;
   margin-bottom: 10px;
-}
-
-/* Leader Board */
-.user-list {
-  max-width: 500px;
-  padding: 0px;
-  margin: 0 auto;
-  border: 1px solid var(--black);
-  border-radius: 5px;
-}
-
-.user {
-  border-bottom: 1px solid var(--black);
-  border-radius: 5px;
-  height: 120px;
-  width: 100%;
-  display: grid;
-  grid-template-rows: 40% 30% 30%;
-  grid-template-columns: 30% 70%;
-}
-
-.user:last-child {
-  border-bottom: none;
-}
-
-.user .avatar {
-  grid-row: 1 / 4;
-  grid-column: 1 / 2;
-  display: flex;
-  justify-self: center;
-  align-self: center;
-}
-
-.user-name {
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.asked {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
-}
-
-.answered {
-  grid-row: 3 / 4;
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
 }

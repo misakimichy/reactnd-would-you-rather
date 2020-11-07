@@ -28,35 +28,34 @@ const NewQuestion = (props) => {
   }
 
   return (
-    <div>
+    <main>
       <h1 className="center">New Question</h1>
       <div className="question">
         <h2>Would You Rather...</h2>
 
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="option">
-            <input
-              className="option"
-              value={optionOne}
-              placeholder="First option comes here."
-              onChange={(e) => handleSelectOption(e, 1)}
-            />
-          </div>
+          <input
+            className="option"
+            value={optionOne}
+            placeholder="First option..."
+            onChange={(e) => handleSelectOption(e, 1)}
+          />
+
           <span>or</span>
-          <div className="options">
-            <input
-              className="option"
-              value={optionTwo}
-              placeholder="Second option comes here."
-              onChange={(e) => handleSelectOption(e, 2)}
-            />
-          </div>
+
+          <input
+            className="option"
+            value={optionTwo}
+            placeholder="Second option..."
+            onChange={(e) => handleSelectOption(e, 2)}
+          />
+
           <button className="button" type="submit" disabled={optionOne === '' || optionTwo === ''}>
             Submit
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 
