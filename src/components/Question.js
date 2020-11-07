@@ -1,102 +1,81 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import QuestionDetail from './QuestionDetail';
 import { handleAnswerQuestion } from '../actions/questions';
 import NotFound from './NotFound';
 
-class Question extends Component {
-  state = {
-    answered: this.props.answered,
-    selectOption: '',
+const Question = (props) => {
+  // destruct props
+  const { dispatch, question, user, questionNotExist, authedUser, answered } = props;
+  const { avatarURL } = user;
+  const { author, id, optionOne, optionTwo } = question;
+
+  const [answeredStatus, setAnsweredStatus] = useState(answered);
+  const [selectOption, setSelectOption] = useState('');
+
+  const handleAnswer = () => {
+    dispatch(handleAnswerQuestion(authedUser, question.id, selectOption));
+    setAnsweredStatus(true);
   };
 
-  handleAnswer = (answer) => {
-    const { dispatch } = this.props;
-    dispatch(
-      handleAnswerQuestion(this.props.authedUser, this.props.question.id, this.state.selectOption)
-    );
-    this.setState({
-      answered: true,
-    });
+  const handleSelectOption = (e) => {
+    e.preventDefault();
+    setSelectOption(e.target.Value);
   };
 
-  handleSelectOption = (event) => {
-    event.preventDefault();
-    this.setState({
-      selectOption: event.target.value,
-    });
-  };
+  if (questionNotExist) {
+    return <Route path="*" component={NotFound} />;
+  }
 
-  render() {
-    const { question, user, questionNotExist } = this.props;
-    if (questionNotExist) {
-      return <Route path="*" component={NotFound} />;
-    }
-    const { answered, selectOption } = this.state;
-    const { optionOne, optionTwo } = question;
-
-    return (
-      <Fragment>
-        {answered && (
-          <div>
-            <h1 className="center">Result</h1>
-            <div className="question-card">
-              <div className="author-info">
-                <img
-                  className="question-card-avatar"
-                  src={user.avatarURL}
-                  alt={`avatar of ${question.author}`}
-                />
-                <div className="question-author">{question.author} asks</div>
-              </div>
-              <div className="option-container">
-                <QuestionDetail
-                  questionId={question.id}
-                  optionName="optionOne"
-                  onClick={this.handleAnswer}
-                />
-                <span>or</span>
-                <QuestionDetail
-                  questionId={question.id}
-                  optionName="optionTwo"
-                  onClick={this.handleAnswer}
-                />
-              </div>
+  return (
+    <section>
+      {answeredStatus && (
+        <div>
+          <h1 className="center">Result</h1>
+          <div className="question-card">
+            <div className="author-info">
+              <img className="question-card-avatar" src={avatarURL} alt={`avatar of ${author}`} />
+              <div className="question-author">{author} asks</div>
+            </div>
+            <div className="option-container">
+              <QuestionDetail questionId={id} optionName="optionOne" onClick={this.handleAnswer} />
+              <span>or</span>
+              <QuestionDetail questionId={id} optionName="optionTwo" onClick={this.handleAnswer} />
             </div>
           </div>
-        )}
-        {!answered && (
-          <form onSubmit={this.handleAnswer}>
-            <h1 className="center">Would you rather</h1>
-            <div className="poll">
-              <input
-                type="radio"
-                value="optionOne"
-                id="radio1"
-                checked={selectOption === 'optionOne'}
-                onChange={this.handleSelectOption}
-              />
-              <label htmlFor="radio1">{optionOne.text}</label>
-              <div>or</div>
-              <input
-                type="radio"
-                value="optionTwo"
-                id="radio2"
-                checked={selectOption === 'optionTwo'}
-                onChange={this.handleSelectOption}
-              />
-              <label htmlFor="radio2">{optionTwo.text}</label>
-              <button className="button" type="submit" disabled={selectOption === ''}>
-                Vote
-              </button>
-            </div>
-          </form>
-        )}
-      </Fragment>
-    );
-  }
-}
+        </div>
+      )}
+      {!answeredStatus && (
+        <form onSubmit={handleAnswer}>
+          <h1 className="center">Would you rather</h1>
+          <div className="poll">
+            <input
+              type="radio"
+              value="optionOne"
+              id="radio1"
+              checked={selectOption === 'optionOne'}
+              onChange={(e) => handleSelectOption(e)}
+            />
+            <label htmlFor="radio1">{optionOne.text}</label>
+            <div>or</div>
+            <input
+              type="radio"
+              value="optionTwo"
+              id="radio2"
+              checked={selectOption === 'optionTwo'}
+              onChange={(e) => handleSelectOption(e)}
+            />
+            <label htmlFor="radio2">{optionTwo.text}</label>
+            <button className="button" type="submit" disabled={selectOption === ''}>
+              Vote
+            </button>
+          </div>
+        </form>
+      )}
+    </section>
+  );
+};
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { question_id } = props.match.params;

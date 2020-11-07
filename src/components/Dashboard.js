@@ -24,7 +24,7 @@ const Dashboard = (props) => {
   
   */
   return (
-    <div>
+    <main>
       <Nav tabs>
         <div className="tabs">
           <NavItem>
@@ -68,7 +68,7 @@ const Dashboard = (props) => {
           </TabPane>
         )}
       </TabContent>
-    </div>
+    </main>
   );
 };
 

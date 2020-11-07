@@ -5,7 +5,7 @@ const LeaderBoard = (props) => {
   const { users } = props;
 
   return (
-    <div>
+    <section>
       <h1 className="center">Leader Board</h1>
       <ul className="user-list">
         {users.map((user) => {
@@ -20,7 +20,7 @@ const LeaderBoard = (props) => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 

@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/questions';
 
 const NewQuestion = (props) => {
+  // destruct props
   const { dispatch, id } = props;
   const [optionOne, setOptionOne] = useState('');
   const [optionTwo, setOptionTwo] = useState('');

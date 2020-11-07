@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { signOut } from '../actions/authedUser';
 
 const Nav = (props) => {
+  // destruct props
   const { user, dispatch } = props;
   const [toLogin, setToLogin] = useState(false);
 
