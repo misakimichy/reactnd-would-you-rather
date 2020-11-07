@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import QuestionList from './QuestionList';
 
@@ -16,58 +16,36 @@ const Dashboard = (props) => {
     }
   };
 
-  /* 
-
-  Reference: 
-  reactstrap nav: https://reactstrap.github.io/components/navs/
-  reactstarp tabs: https://reactstrap.github.io/components/tabs/
-  
-  */
   return (
     <main>
-      <Nav tabs>
+      <div tabs>
         <div className="tabs">
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '1' })}
-              onClick={() => handleTabChange('1')}
-            >
+          <Link className={classnames({ active: activeTab === '1' })}>
+            <button type="button" className="button" onClick={() => handleTabChange('1')}>
               Unanswered
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '2' })}
-              onClick={() => handleTabChange('2')}
-            >
+            </button>
+          </Link>
+
+          <Link className={classnames({ active: activeTab === '2' })}>
+            <button type="button" className="button" onClick={() => handleTabChange('2')}>
               See Answered
-            </NavLink>
-          </NavItem>
+            </button>
+          </Link>
         </div>
-      </Nav>
-      <TabContent activeTab={activeTab}>
-        {activeTab === '1' ? (
-          <TabPane tabId="1">
-            <ul className="questions">
-              {unansweredQIds.map((questionId) => (
-                <li key={questionId}>
-                  <QuestionList id={questionId} />
-                </li>
-              ))}
-            </ul>
-          </TabPane>
-        ) : (
-          <TabPane tabId="2">
-            <ul className="questions">
-              {answeredQIds.map((questionId) => (
-                <li key={questionId}>
-                  <QuestionList id={questionId} />
-                </li>
-              ))}
-            </ul>
-          </TabPane>
-        )}
-      </TabContent>
+      </div>
+      {activeTab === '1' ? (
+        <div className="questions">
+          {unansweredQIds.map((questionId) => (
+            <QuestionList key={questionId} id={questionId} />
+          ))}
+        </div>
+      ) : (
+        <div className="questions">
+          {answeredQIds.map((questionId) => (
+            <QuestionList key={questionId} id={questionId} />
+          ))}
+        </div>
+      )}
     </main>
   );
 };

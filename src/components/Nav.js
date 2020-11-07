@@ -19,8 +19,8 @@ const Nav = (props) => {
     return <Redirect to="/login" />;
   }
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
+    <nav className="nav">
+      <div className="nav-left">
         <NavLink to="/" exact activeClassName="active">
           Home
         </NavLink>
@@ -31,9 +31,8 @@ const Nav = (props) => {
           Leader Board
         </NavLink>
       </div>
-      <div className="navbar-right">
-        <p> Hello {user} !</p>
-
+      <div className="nav-right">
+        <p> 👋 {user}</p>
         <NavLink to="#" onClick={(e) => handleSignOut(e)}>
           Sign Out
         </NavLink>

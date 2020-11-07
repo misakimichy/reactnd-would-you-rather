@@ -32,6 +32,7 @@ const NewQuestion = (props) => {
       <h1 className="center">New Question</h1>
       <div className="question">
         <h2>Would You Rather...</h2>
+
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="option">
             <input

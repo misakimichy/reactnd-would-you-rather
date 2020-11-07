@@ -109,15 +109,15 @@ select {
 
 /* Question List */
 .question-list {
-  width: 100%;
-  max-width: 500px;
-  height: 120px;
-  margin: 0 auto;
-  border: 1px solid var(--black);
-  border-radius: 5px;
   display: grid;
   grid-template-rows: 35% 25% 15% 25%;
   grid-template-columns: 30% 70%;
+  width: 100%;
+  max-width: 500px;
+  height: 120px;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  margin: 0 auto;
 }
 
 .question-list .avatar {
@@ -213,25 +213,40 @@ label {
 }
 
 /* Nav */
-.navbar {
-  width: 100%;
-  padding: 0;
-  margin: 10px auto;
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 18px;
+
+  width: 60%;
+  margin: 10px auto;
 }
 
-.navbar ul li {
+.nav ul li {
   margin-right: 20px;
 }
 
-.navbar-left {
+.nav-left {
   display: flex;
+  width: 70%;
   padding: 0;
 }
 
-.navbar-right {
+.nav-left * {
+  margin-right: 24px;
+  color: var(--yellow);
+}
+
+.nav-right {
   display: flex;
-  margin-left: 400px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 45%;
+}
+
+.nav-right a {
+  color: var(--yellow);
 }
 
 /* New Question */
