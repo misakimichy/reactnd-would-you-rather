@@ -21,6 +21,7 @@ const Question = (props) => {
 
   const handleSelectOption = (e) => {
     e.preventDefault();
+    console.log(e.target.value);
     setSelectOption(e.target.Value);
   };
 
@@ -39,9 +40,9 @@ const Question = (props) => {
               <div className="question-author">{author} asks</div>
             </div>
             <div className="option-container">
-              <QuestionDetail questionId={id} optionName="optionOne" onClick={this.handleAnswer} />
+              <QuestionDetail questionId={id} optionName="optionOne" onClick={handleAnswer} />
               <span>or</span>
-              <QuestionDetail questionId={id} optionName="optionTwo" onClick={this.handleAnswer} />
+              <QuestionDetail questionId={id} optionName="optionTwo" onClick={handleAnswer} />
             </div>
           </div>
         </div>
@@ -49,27 +50,25 @@ const Question = (props) => {
         <form onSubmit={handleAnswer}>
           <h1 className="center">Would you rather</h1>
           <div className="poll">
-            <label htmlFor="radio1">
-              <input
-                type="radio"
-                value="optionOne"
-                id="radio1"
-                checked={selectOption === 'optionOne'}
-                onChange={(e) => handleSelectOption(e)}
-              />
-              {optionOne.text}
-            </label>
+            <label htmlFor="radio1"></label>
+            <input
+              type="radio"
+              value="optionOne"
+              id="radio1"
+              checked={selectOption === 'optionOne'}
+              onChange={(e) => handleSelectOption(e)}
+            />
+            {optionOne.text}
             <span>or</span>
-            <label htmlFor="radio2">
-              <input
-                type="radio"
-                value="optionTwo"
-                id="radio2"
-                checked={selectOption === 'optionTwo'}
-                onChange={(e) => handleSelectOption(e)}
-              />
-              {optionTwo.text}
-            </label>
+            <label htmlFor="radio2"></label>
+            <input
+              type="radio"
+              value="optionTwo"
+              id="radio2"
+              checked={selectOption === 'optionTwo'}
+              onChange={(e) => handleSelectOption(e)}
+            />
+            {optionTwo.text}
             <button className="button" type="submit" disabled={selectOption === ''}>
               vote
             </button>
