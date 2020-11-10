@@ -41,7 +41,7 @@ const NewQuestion = (props) => {
             onChange={(e) => handleSelectOption(e, 1)}
           />
 
-          <span>or</span>
+          <p>or</p>
 
           <input
             className="option"

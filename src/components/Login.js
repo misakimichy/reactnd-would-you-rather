@@ -34,7 +34,7 @@ const Login = (props) => {
   return (
     <form className="login-container" onSubmit={(e) => handleLogin(e)}>
       <img className="login-avatar" src={loginAvatar} alt={`Choose user`} />
-      <h1 className="center">Please select a user</h1>
+      <h1 className="center">Choose user</h1>
       <select value={username} onChange={(e) => handleUserSelect(e)}>
         <option>Username</option>
         {users.map((user) => {
