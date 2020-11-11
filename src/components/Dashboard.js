@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 import QuestionList from './QuestionList';
 
 const Dashboard = (props) => {
   // destruct props
   const { unansweredQIds, answeredQIds } = props;
-
   const [activeTab, setActiveTab] = useState('1');
 
   const handleTabChange = (tab) => {
@@ -20,7 +18,7 @@ const Dashboard = (props) => {
       <div className="tabs">
         <button
           type="button"
-          className={(classnames({ active: activeTab === '1' }), 'button')}
+          className={activeTab === '1' ? 'button button-selected' : 'button'}
           onClick={() => handleTabChange('1')}
         >
           Unanswered
@@ -28,7 +26,7 @@ const Dashboard = (props) => {
 
         <button
           type="button"
-          className={(classnames({ active: activeTab === '2' }), 'button')}
+          className={activeTab === '2' ? 'button button-selected' : 'button'}
           onClick={() => handleTabChange('2')}
         >
           See Answered
