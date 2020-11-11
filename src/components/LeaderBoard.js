@@ -14,7 +14,7 @@ const LeaderBoard = (props) => {
             <div className="question-list" key={id}>
               <img className="avatar" src={avatarURL} alt={`Avatar of ${id}`} />
               <div className="card-right">
-                <p style={{ marginTop: '0', marginBottom: '8px', fontSize: '24px' }}>{name}</p>
+                <p className="author">{name}</p>
                 <p className="options">Question Asked: {questions.length}</p>
                 <p className="options">Question Answered: {Object.keys(answers).length}</p>
               </div>

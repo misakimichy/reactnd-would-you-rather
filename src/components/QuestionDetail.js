@@ -1,36 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const QuestionDetail = (props) => {
   // destruct props
-  const { option, showResult, isVoted, percentage, optionName, onClick } = props;
-  const { text, votes } = option;
+  const { option, isVoted, percentage } = props;
+  const { text } = option;
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    onClick(optionName);
-  };
-
-  return showResult === false ? (
-    <Link to="#" onClick={(e) => handleClick}>
-      <div className={isVoted ? 'selected' : ''}>
-        <h1 className="detail-option-one">{text}</h1>
-        {showResult === true && (
-          <div className="result">
-            Number of Votes: {votes.length} ({percentage}%)
-          </div>
-        )}
-      </div>
-    </Link>
-  ) : (
-    <div className={isVoted ? 'selected' : ''}>
-      <h1 className="detail-option-one">{text}</h1>
-      {showResult === true && (
-        <div className="result">
-          Number of Votes: {votes.length} ({percentage}%)
-        </div>
-      )}
+  return (
+    <div className={isVoted ? 'selected result' : 'result'}>
+      <h1 className="options">{text}</h1>
+      <p>({percentage}%)</p>
     </div>
   );
 };
@@ -44,9 +23,7 @@ const mapStateToProps = ({ authedUser, questions, users }, { questionId, optionN
 
   return {
     option,
-    optionName,
     isVoted: option.votes.includes(currentUser.id),
-    showResult: Object.keys(currentUser.answers).includes(questionId),
     percentage: ((option.votes.length / (optionOneVotes + optionTwoVotes)) * 100).toFixed(2),
   };
 };

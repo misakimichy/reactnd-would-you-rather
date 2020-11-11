@@ -29,8 +29,11 @@ const Question = (props) => {
           <h1 className="center">Result</h1>
           <div className="question-card">
             <div className="author-info">
-              <img className="question-card-avatar" src={avatarURL} alt={`avatar of ${author}`} />
-              <div className="question-author">{author} asks</div>
+              <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
+              <p className="author">
+                {author}
+                <span> asked</span>
+              </p>
             </div>
             <div className="option-container">
               <QuestionDetail questionId={id} optionName="optionOne" onClick={handleAnswer} />

@@ -14,7 +14,7 @@ const QuestionList = (props) => {
         <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
 
         <div className="card-right">
-          <p style={{ marginTop: '0', marginBottom: '8px', fontSize: '24px' }}>{name}</p>
+          <p className="author">{name}</p>
           <p className="options">{optionOne.text}</p>
           <span>or</span>
           <p className="options">{optionTwo.text}</p>

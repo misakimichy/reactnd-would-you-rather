@@ -18,7 +18,6 @@ const Dashboard = (props) => {
   return (
     <main>
       <div className="tabs">
-        {/* <Link className={classnames({ active: activeTab === '1' })}> */}
         <button
           type="button"
           className={(classnames({ active: activeTab === '1' }), 'button')}
