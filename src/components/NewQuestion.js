@@ -50,7 +50,12 @@ const NewQuestion = (props) => {
             onChange={(e) => handleSelectOption(e, 2)}
           />
 
-          <button className="button" type="submit" disabled={optionOne === '' || optionTwo === ''}>
+          <button
+            className="button"
+            type="submit"
+            disabled={optionOne === '' || optionTwo === ''}
+            tabIndex="0"
+          >
             Submit
           </button>
         </form>
