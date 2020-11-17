@@ -46,6 +46,8 @@ When you click the 'Sign Out' on the top right, it'll take you to the login page
 4. `$npm start`
    The will start the app in port :3000 on your local machine.
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
+## Stack used
+ - React
+ - Redux
+ - React Router
+ - styled-component
