@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 const LeaderBoard = (props) => {
   const { users } = props;
 
   return (
-    <section>
+    <Styles>
       <h1 className="center">Leader Board</h1>
       <div className="questions">
         {users.map((user) => {
@@ -22,7 +23,7 @@ const LeaderBoard = (props) => {
           );
         })}
       </div>
-    </section>
+    </Styles>
   );
 };
 
@@ -38,3 +39,5 @@ const mapStateToProps = ({ users }) => {
 };
 
 export default connect(mapStateToProps)(LeaderBoard);
+
+const Styles = styled.section``;

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import QuestionDetail from './QuestionDetail';
+import styled from 'styled-components';
 import { handleAnswerQuestion } from '../actions/questions';
+
+// components
+import QuestionDetail from './QuestionDetail';
 import NotFound from './NotFound';
 
 const Question = (props) => {
@@ -23,25 +26,23 @@ const Question = (props) => {
     return <Route path="*" component={NotFound} />;
   }
   return (
-    <section>
+    <Styles>
       {answeredStatus ? (
-        <div>
+        <>
           <h1 className="center">Result</h1>
-          <div className="question-card">
-            <div className="author-info">
+          <div className="question-list">
+            <div className="questions">
               <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
-              <p className="author">
-                {author}
-                <span> asked</span>
-              </p>
+              <span style={{ fontSize: '14px' }}>{author}</span>
             </div>
+
             <div className="option-container">
               <QuestionDetail questionId={id} optionName="optionOne" onClick={handleAnswer} />
               <p>or</p>
               <QuestionDetail questionId={id} optionName="optionTwo" onClick={handleAnswer} />
             </div>
           </div>
-        </div>
+        </>
       ) : (
         <form onSubmit={handleAnswer}>
           <div className="question">
@@ -56,7 +57,7 @@ const Question = (props) => {
               />
               <label htmlFor="radio1">{optionOne.text}</label>
             </div>
-            <p style={{ margin: '0' }}>or</p>
+            <p>or</p>
             <div className="radio-button">
               <input
                 type="radio"
@@ -73,7 +74,7 @@ const Question = (props) => {
           </div>
         </form>
       )}
-    </section>
+    </Styles>
   );
 };
 
@@ -102,3 +103,18 @@ const mapStateToProps = ({ authedUser, questions, users }, props) => {
 };
 
 export default connect(mapStateToProps)(Question);
+
+const Styles = styled.section`
+  .radio-button {
+    display: flex;
+    align-items: center;
+
+    * {
+      cursor: pointer;
+    }
+  }
+
+  .option-container {
+    width: unset;
+  }
+`;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import { handleAddQuestion } from '../actions/questions';
 
 const NewQuestion = (props) => {
@@ -28,14 +29,13 @@ const NewQuestion = (props) => {
   }
 
   return (
-    <main>
+    <Styles>
       <h1 className="center">New Question</h1>
       <div className="question">
         <h2>Would You Rather...</h2>
 
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
-            className="option"
             value={optionOne}
             placeholder="First option..."
             onChange={(e) => handleSelectOption(e, 1)}
@@ -44,7 +44,6 @@ const NewQuestion = (props) => {
           <p>or</p>
 
           <input
-            className="option"
             value={optionTwo}
             placeholder="Second option..."
             onChange={(e) => handleSelectOption(e, 2)}
@@ -60,7 +59,7 @@ const NewQuestion = (props) => {
           </button>
         </form>
       </div>
-    </main>
+    </Styles>
   );
 };
 
@@ -72,3 +71,19 @@ const mapStateToProps = ({ authedUser, users }) => {
 };
 
 export default connect(mapStateToProps)(NewQuestion);
+
+const Styles = styled.main`
+  form {
+    width: 100%;
+  }
+
+  input {
+    font-size: 16px;
+    resize: none;
+    outline: none;
+
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+`;

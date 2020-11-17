@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const QuestionList = (props) => {
   // destruct props
@@ -9,18 +10,20 @@ const QuestionList = (props) => {
   const { id, author, optionOne, optionTwo } = question;
 
   return (
-    <Link to={`/questions/${id}`}>
-      <div className="question-list">
-        <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
+    <Styles>
+      <Link to={`/questions/${id}`}>
+        <div className="question-list">
+          <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
 
-        <div className="card-right">
-          <p className="author">{name}</p>
-          <p className="options">{optionOne.text}</p>
-          <span>or</span>
-          <p className="options">{optionTwo.text}</p>
+          <div className="card-right">
+            <p className="author">{name}</p>
+            <p className="options">{optionOne.text}</p>
+            <p>or</p>
+            <p className="options">{optionTwo.text}</p>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </Styles>
   );
 };
 
@@ -35,3 +38,5 @@ const mapStateToProps = ({ users, questions }, { id }) => {
 };
 
 export default connect(mapStateToProps)(QuestionList);
+
+const Styles = styled.div``;

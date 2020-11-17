@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
 import QuestionList from './QuestionList';
+
+import { colors } from '../styles/theme';
 
 const Dashboard = (props) => {
   // destruct props
@@ -14,7 +18,7 @@ const Dashboard = (props) => {
   };
 
   return (
-    <main>
+    <Styles>
       <div className="tabs">
         <button
           type="button"
@@ -46,7 +50,7 @@ const Dashboard = (props) => {
           ))}
         </div>
       )}
-    </main>
+    </Styles>
   );
 };
 
@@ -73,3 +77,17 @@ function mapStateToProps({ authedUser, questions }) {
 }
 
 export default connect(mapStateToProps)(Dashboard);
+
+const Styles = styled.main`
+  .tabs {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  .button-selected {
+    background-color: ${colors.greenHover};
+  }
+`;

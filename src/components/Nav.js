@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { signOut } from '../actions/authedUser';
+
+import { colors } from '../styles/theme';
 
 const Nav = (props) => {
   // destruct props
@@ -19,7 +22,7 @@ const Nav = (props) => {
     return <Redirect to="/login" />;
   }
   return (
-    <nav className="nav">
+    <Styles>
       <div className="nav-left">
         <NavLink to="/" exact activeClassName="active">
           Home
@@ -37,7 +40,7 @@ const Nav = (props) => {
           Sign Out
         </NavLink>
       </div>
-    </nav>
+    </Styles>
   );
 };
 
@@ -51,3 +54,35 @@ const mapStateToProps = ({ authedUser, users }) => {
 };
 
 export default connect(mapStateToProps)(Nav);
+
+const Styles = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+
+  width: 60%;
+  margin: 20px auto;
+
+  .nav-left {
+    display: flex;
+    width: 70%;
+    padding: 0;
+
+    * {
+      margin-right: 24px;
+      color: ${colors.yellow};
+    }
+  }
+
+  .nav-right {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 45%;
+
+    a {
+      color: ${colors.yellow};
+    }
+  }
+`;

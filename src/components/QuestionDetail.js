@@ -8,7 +8,7 @@ const QuestionDetail = (props) => {
 
   return (
     <div className={isVoted ? 'selected result' : 'result'}>
-      <h1 className="options">{text}</h1>
+      <h6 className="options">{text}</h6>
       <p>({percentage}%)</p>
     </div>
   );
