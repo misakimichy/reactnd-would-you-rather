@@ -13,11 +13,17 @@ This app begins on a login page. You need to select a user from the list.
 
 ### Home
 
-The main page shows a list of questions that the user hasn't answered. You can answer an question to click a card.
-\
-You can also lick the "See Answered" button to view the result of the poll which the logged-in user has already answered.
-
+The Home shows a list of questions that the user hasn't answered.
 ![alt screenshot of Home](image/screenshot_home.png)
+\
+You can also lick the "See Answered" button to view the result of polls that the logged-in user has already answered.
+![alt screenshot of Home](image/screenshot_leaderboard.png)
+
+### Poll page
+
+You can select your answer to click a card.
+![alt screenshot of Home](image/screenshot_poll.png)
+Once you submit your choice, it automatically shows the total vote result.
 
 ### New Question
 
@@ -25,11 +31,11 @@ You can post a new question from the New Question page.
 
 ![alt screenshot of Home](image/screenshot_new_question.png)
 
-### Leader Board
+### Board
 
 Leader board shows all users ranking based on the sum of questions that users asked and answered.
 
-![alt screenshot of Home](image/screenshot_leaderboard.png)
+![alt screenshot of Home](image/screenshot_board.png)
 
 ### Sign Out
 
@@ -47,7 +53,8 @@ When you click the 'Sign Out' on the top right, it'll take you to the login page
    The will start the app in port :3000 on your local machine.
 
 ## Stack used
- - React
- - Redux
- - React Router
- - styled-component
+
+- React
+- Redux
+- React Router
+- styled-component
