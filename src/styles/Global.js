@@ -19,6 +19,9 @@ export default css`
     letter-spacing: 1px;
     line-height: 1.25;
     margin-bottom: 15px;
+    @media screen and (max-width: 500px) {
+      font-size: 1.8rem;
+    }
   }
 
   h2 {
@@ -26,17 +29,28 @@ export default css`
     word-spacing: 3px;
     margin-bottom: 15px;
     line-height: 1.2;
+
+    @media screen and (max-width: 500px) {
+      font-size: 1.7rem;
+    }
   }
 
   h3 {
     font-size: 1.8rem;
     padding-bottom: 10px;
     line-height: 3rem;
+
+    @media screen and (max-width: 500px) {
+      font-size: 1.5rem;
+    }
   }
 
   h4 {
     font-size: 1.6rem;
     padding-bottom: 5px;
+    @media screen and (max-width: 500px) {
+      font-size: 1.4rem;
+    }
   }
 
   h5 {
@@ -133,6 +147,7 @@ export default css`
     }
     .options {
       font-size: 16px;
+      text-align: initial;
       margin: 0;
     }
   }
@@ -162,6 +177,32 @@ export default css`
   @media screen and (max-width: 800px) {
     .button {
       width: 130px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .card-right {
+      .author {
+        font-size: 18px;
+      }
+    }
+
+    .result {
+      padding: 6px 10px;
+      .options {
+        font-size: 14px;
+      }
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      margin: 10px 20px 10px 10px;
+    }
+
+    .question-list {
+      width: 300px;
+      height: 120px;
     }
   }
 `;

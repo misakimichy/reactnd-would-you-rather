@@ -33,7 +33,7 @@ const Dashboard = (props) => {
           className={activeTab === '2' ? 'button button-selected' : 'button'}
           onClick={() => handleTabChange('2')}
         >
-          See Answered
+          Answered
         </button>
       </div>
 
@@ -83,8 +83,12 @@ const Styles = styled.main`
     display: flex;
     justify-content: space-evenly;
 
-    max-width: 450px;
+    max-width: 300px;
     margin: 0 auto;
+
+    .button {
+      width: 110px;
+    }
   }
 
   .button-selected {

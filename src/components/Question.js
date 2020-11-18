@@ -46,7 +46,7 @@ const Question = (props) => {
       ) : (
         <form onSubmit={handleAnswer}>
           <div className="question">
-            <h2 className="center">Would you rather</h2>
+            <h3 className="center">Would you rather</h3>
             <div className="radio-button">
               <input
                 type="radio"
@@ -120,5 +120,9 @@ const Styles = styled.section`
 
   .question {
     width: 450px;
+
+    @media screen and (max-width: 500px) {
+      width: 300px;
+    }
   }
 `;

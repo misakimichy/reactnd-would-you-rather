@@ -78,4 +78,10 @@ const Styles = styled.div`
       padding: 10px;
     }
   }
+
+  @media screen and (max-width: 500px) {
+    .question {
+      width: 300px;
+    }
+  }
 `;

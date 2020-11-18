@@ -90,4 +90,14 @@ const Styles = styled.main`
   .question {
     width: 450px;
   }
+  @media screen and (max-width: 500px) {
+    input {
+      font-size: 14px;
+      height: 30px;
+    }
+
+    .question {
+      width: 300px;
+    }
+  }
 `;

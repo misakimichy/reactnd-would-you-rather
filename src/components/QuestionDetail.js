@@ -1,16 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+import useWindowWidth from '../utils/hooks/useWindowWidth';
 
 const QuestionDetail = (props) => {
   // destruct props
   const { option, isVoted, percentage } = props;
   const { text } = option;
 
+  const windowWidth = useWindowWidth();
+
   return (
-    <div className={isVoted ? 'selected result' : 'result'}>
-      <h6 className="options">{text}</h6>
-      <p>({percentage}%)</p>
-    </div>
+    <Styles>
+      <div className={isVoted ? 'selected result' : 'result'}>
+        <p className="options" styles={windowWidth < 500 && { fontSize: '14px' }}>
+          {text}
+        </p>
+        <p>({percentage}%)</p>
+      </div>
+    </Styles>
   );
 };
 
@@ -29,3 +38,5 @@ const mapStateToProps = ({ authedUser, questions, users }, { questionId, optionN
 };
 
 export default connect(mapStateToProps)(QuestionDetail);
+
+const Styles = styled.div``;
