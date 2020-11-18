@@ -68,7 +68,7 @@ export default css`
 
   button {
     :hover {
-      background-color: ${colors.greenHover};
+      border: 1px solid ${colors.greenHover};
     }
 
     :focus {
@@ -124,17 +124,17 @@ export default css`
   .card-right {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-  }
+    align-items: flex-start;
 
-  .options {
-    margin: 0;
-  }
-
-  .author {
-    font-size: 24px;
-    margin-top: 0;
-    margin-bottom: 8px;
+    .author {
+      font-size: 24px;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .options {
+      font-size: 16px;
+      margin: 0;
+    }
   }
 
   /* Question result */

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { colors } from '../styles/theme';
+
 const QuestionList = (props) => {
   // destruct props
   const { user, question } = props;
@@ -11,8 +13,8 @@ const QuestionList = (props) => {
 
   return (
     <Styles>
-      <Link to={`/questions/${id}`}>
-        <div className="question-list">
+      <Link to={`/questions/${id}`} tabIndex="-1">
+        <button type="button" className="question-list">
           <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
 
           <div className="card-right">
@@ -21,7 +23,7 @@ const QuestionList = (props) => {
             <p>or</p>
             <p className="options">{optionTwo.text}</p>
           </div>
-        </div>
+        </button>
       </Link>
     </Styles>
   );
@@ -39,4 +41,11 @@ const mapStateToProps = ({ users, questions }, { id }) => {
 
 export default connect(mapStateToProps)(QuestionList);
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  .question-list {
+    background: transparent;
+    :focus {
+      border: 1px solid ${colors.yellow};
+    }
+  }
+`;
