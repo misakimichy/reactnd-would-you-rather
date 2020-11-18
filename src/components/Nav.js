@@ -9,6 +9,8 @@ import { colors } from '../styles/theme';
 const Nav = (props) => {
   // destruct props
   const { user, dispatch } = props;
+  const firstName = user.split(' ')[0] || ' ';
+
   const [toLogin, setToLogin] = useState(false);
 
   const handleSignOut = (e) => {
@@ -28,14 +30,14 @@ const Nav = (props) => {
           Home
         </NavLink>
         <NavLink to="/add" activeClassName="active">
-          New Question
+          Add
         </NavLink>
         <NavLink to="/leaderboard" activeClassName="active">
-          Leader Board
+          Board
         </NavLink>
       </div>
       <div className="nav-right">
-        <p> 👋 {user}</p>
+        <p> 👋 {firstName}</p>
         <NavLink to="#" onClick={(e) => handleSignOut(e)}>
           Sign Out
         </NavLink>
@@ -61,12 +63,14 @@ const Styles = styled.nav`
   align-items: center;
   font-size: 18px;
 
-  width: 60%;
+  width: 80%;
+  max-width: 600px;
   margin: 20px auto;
 
   .nav-left {
     display: flex;
-    width: 70%;
+    width: 60%;
+    max-width: 300px;
     padding: 0;
 
     * {
@@ -79,10 +83,16 @@ const Styles = styled.nav`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 45%;
-
+    max-width: 250px;
+    width: 40%;
     a {
       color: ${colors.yellow};
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .nav-right {
+      width: 200px;
     }
   }
 `;

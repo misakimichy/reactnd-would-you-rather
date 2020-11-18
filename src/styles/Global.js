@@ -91,7 +91,7 @@ export default css`
     font-size: 16px;
     color: ${colors.black};
     cursor: pointer;
-    width: 200px;
+    width: 150px;
     height: 40px;
     margin: 10px auto;
   }
@@ -149,5 +149,19 @@ export default css`
 
     border-radius: 3px;
     padding: 8px;
+  }
+
+  /* 
+      Media Queries
+      Default is more than 1024
+      800-1024    - tablet landscape
+      800-640     - tablet (Sidebar becomes header)
+      640-less    - phone landscape & smaller - one column
+  */
+
+  @media screen and (max-width: 800px) {
+    .button {
+      width: 130px;
+    }
   }
 `;

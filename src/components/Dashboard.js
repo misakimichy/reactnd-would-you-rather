@@ -83,11 +83,14 @@ const Styles = styled.main`
     display: flex;
     justify-content: space-evenly;
 
-    width: 40%;
+    max-width: 450px;
     margin: 0 auto;
   }
 
   .button-selected {
     background-color: ${colors.greenHover};
+  }
+
+  @media screen and (max-width: 800px) {
   }
 `;
