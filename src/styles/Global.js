@@ -148,7 +148,7 @@ export default css`
     align-items: center;
 
     border-radius: 3px;
-    padding: 8px;
+    padding: 8px 16px;
   }
 
   /* 
