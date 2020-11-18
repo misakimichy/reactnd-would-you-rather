@@ -117,4 +117,8 @@ const Styles = styled.section`
   .option-container {
     width: unset;
   }
+
+  .question {
+    width: 450px;
+  }
 `;

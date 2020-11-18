@@ -61,7 +61,7 @@ const mapStateToProps = ({ users, authedUser }) => {
 export default connect(mapStateToProps)(Login);
 
 const Styles = styled.form`
-  width: 80%;
+  width: 85%;
   margin: 50px auto;
   border: 1px solid ${colors.black};
   border-radius: 3px;

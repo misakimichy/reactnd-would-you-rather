@@ -32,7 +32,7 @@ const NewQuestion = (props) => {
     <Styles>
       <h1 className="center">New Question</h1>
       <div className="question">
-        <h2>Would You Rather...</h2>
+        <h3>Would You Rather...</h3>
 
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
@@ -55,7 +55,7 @@ const NewQuestion = (props) => {
             disabled={optionOne === '' || optionTwo === ''}
             tabIndex="0"
           >
-            Submit
+            Add poll
           </button>
         </form>
       </div>
@@ -85,5 +85,9 @@ const Styles = styled.main`
     width: 100%;
     height: 40px;
     margin-bottom: 10px;
+  }
+
+  .question {
+    width: 450px;
   }
 `;
