@@ -16,7 +16,6 @@ const Nav = (props) => {
   const [toLogin, setToLogin] = useState(false);
 
   const windowWidth = useWindowWidth();
-  console.log(windowWidth);
 
   const handleSignOut = (e) => {
     e.preventDefault();
