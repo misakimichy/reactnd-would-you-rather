@@ -95,6 +95,13 @@ const Styles = styled.main`
     background-color: ${colors.greenHover};
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 500px) {
+    height: 150px;
+    button {
+      font-size: 14px;
+    }
+    .tabs {
+      max-width: 325px;
+    }
   }
 `;

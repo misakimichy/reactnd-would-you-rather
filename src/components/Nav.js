@@ -41,7 +41,11 @@ const Nav = (props) => {
         </NavLink>
       </div>
       <div className="nav-right">
-        {windowWidth > 500 && <p style={{ marginBottom: '2px' }}> 👋 {firstName}</p>}
+        {windowWidth > 500 ? (
+          <p style={{ marginBottom: '2px' }}>👋 {firstName}</p>
+        ) : (
+          <p style={{ marginBottom: '2px' }}>👋</p>
+        )}
         <NavLink to="#" onClick={(e) => handleSignOut(e)}>
           Sign Out
         </NavLink>
@@ -107,11 +111,15 @@ const Styles = styled.nav`
   }
 
   @media screen and (max-width: 500px) {
-    width: 60%;
+    width: 80%;
     .nav-left {
       * {
         margin-right: 12px;
       }
+    }
+
+    .nav-right {
+      width: unset;
     }
   }
 `;

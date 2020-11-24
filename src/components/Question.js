@@ -31,11 +31,7 @@ const Question = (props) => {
         <>
           <h1 className="center">Result</h1>
           <div className="question-list">
-            <div className="questions">
-              <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
-              <span style={{ fontSize: '14px' }}>{author}</span>
-            </div>
-
+            <img className="avatar" src={avatarURL} alt={`avatar of ${author}`} />
             <div className="option-container">
               <QuestionDetail questionId={id} optionName="optionOne" onClick={handleAnswer} />
               <p>or</p>
@@ -45,8 +41,8 @@ const Question = (props) => {
         </>
       ) : (
         <form onSubmit={handleAnswer}>
+          <h1 className="center">Would You Rather</h1>
           <div className="question">
-            <h3 className="center">Would you rather</h3>
             <div className="radio-button">
               <input
                 type="radio"
@@ -122,7 +118,7 @@ const Styles = styled.section`
     width: 450px;
 
     @media screen and (max-width: 500px) {
-      width: 300px;
+      width: 325px;
     }
   }
 `;

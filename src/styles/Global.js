@@ -201,7 +201,7 @@ export default css`
     }
 
     .question-list {
-      width: 300px;
+      width: 325px;
       height: 120px;
     }
   }

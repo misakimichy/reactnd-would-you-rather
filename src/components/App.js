@@ -81,7 +81,7 @@ const Styles = styled.div`
 
   @media screen and (max-width: 500px) {
     .question {
-      width: 300px;
+      width: 325px;
     }
   }
 `;
