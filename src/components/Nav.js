@@ -111,7 +111,7 @@ const Styles = styled.nav`
   }
 
   @media screen and (max-width: 500px) {
-    width: 80%;
+    width: 85%;
     .nav-left {
       * {
         margin-right: 12px;

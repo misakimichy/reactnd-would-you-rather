@@ -162,6 +162,7 @@ export default css`
     justify-content: space-between;
     align-items: center;
 
+    border: 1px solid ${colors.greenHover};
     border-radius: 3px;
     padding: 8px 16px;
   }
@@ -195,14 +196,15 @@ export default css`
     }
 
     .avatar {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       margin: 10px 20px 10px 10px;
     }
 
     .question-list {
       width: 325px;
       height: 120px;
+      padding: 8px;
     }
   }
 `;
