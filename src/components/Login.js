@@ -86,4 +86,14 @@ const Styles = styled.form`
       outline: none;
     }
   }
+
+  @media screen and (max-width: 500px) {
+    .login-avatar {
+      width: 70%;
+    }
+
+    select {
+      width: 70%;
+    }
+  }
 `;
